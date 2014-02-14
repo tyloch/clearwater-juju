@@ -1,0 +1,13 @@
+#!/bin/bash
+# Create/Update the solo.rb file
+touch /home/ubuntu/chef-solo/solo.rb
+cat > /home/ubuntu/chef-solo/solo.rb <<'EOP'
+file_cache_path "/var/chef-solo"
+cookbook_path  [
+    "/home/ubuntu/chef-solo/cookbooks"
+]
+environment_path "/home/ubuntu/chef-solo/environments"
+role_path "/home/ubuntu/chef-solo/roles"
+verbose_logging true
+log_level :debug
+EOP

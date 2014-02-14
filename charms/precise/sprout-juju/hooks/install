@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Install chef solo
+$CHARM_DIR/lib/chef_solo_install
+# Create the solo.rb file
+$CHARM_DIR/lib/create_solo_file
+
+# Add the node-specific info
+touch /home/ubuntu/chef-solo/node.json
+cat > /home/ubuntu/chef-solo/node.json <<'EOP'
+{"run_list":["role[sprout]"]}
+EOP
+
+# This stops the save from borking
+mkdir -p /etc/chef/ohai/hints
+touch /etc/chef/ohai/hints/ec2.json
+cat > /etc/chef/ohai/hints/ec2.json <<'EOP'
+{}
+EOP
+
+# Update the source list with the correct repo server
+touch /etc/apt/sources.list.d/clearwater.list
+chmod 777 /etc/apt/sources.list.d/clearwater.list
+$CHARM_DIR/lib/source_script
+chmod 644 /etc/apt/sources.list.d/clearwater.list
+
+# Update the config file
+mkdir /etc/clearwater/
+touch /etc/clearwater/config
+$CHARM_DIR/lib/config_script
+chmod 755 /etc/clearwater/config
+
+apt-get update
+
+# Install the node
+chef-solo -c /home/ubuntu/chef-solo/solo.rb -j /home/ubuntu/chef-solo/node.json
+
+# Expose the correct ports
+open-port 22/tcp
+open-port 123/udp
