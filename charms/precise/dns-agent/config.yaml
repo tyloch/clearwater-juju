@@ -10,3 +10,9 @@ options:
     default: “”
     description: The location of the ENUM server
     type: string
+  access_key:
+    description: EC2 Access Key
+    type: string
+  secret_key:
+    description: EC2 Secret Access Key
+    type: string
