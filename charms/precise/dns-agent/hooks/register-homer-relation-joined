@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+
+peer_ip = `relation-get private-address`
+root_zone = `config-get zone`
+
+if [[ -z $peer_ip ]]
+then
+  juju-log "Peer connected but has no IP address"
+  exit 0;
+fi
+
+juju-log "Discovered new homer node: $peer_ip"
+
+# ADD HOMER TO THE DNS HERE
+
+relation-set home_domain=$root_zone
+relation-set sprout_domain=sprout.$root_zone
+relation-set homestead_domain=homestead.$root_zone
+relation-set homer_domain=homer.$root_zone
+relation-set ellis_domain=ellis.$root_zone
+relation-set ralf_domain=ralf.$root_zone
+relation-set sas_domain=`config-get sas`
+relation-set enum_domain=`config-get enum`
