@@ -5,4 +5,5 @@
 # failing to account for a debconf question on a dependency, or trying to pull
 # from github without installing git first.
 
-juju-log "DNS Agnet requires no install"
+apt-get install -y ruby1.9.3 build-essential libxslt1-dev
+gem install aws-sdk --no-ri --no-rdoc
