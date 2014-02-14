@@ -10,25 +10,37 @@ with open( '%s/lib/config_template.txt' % charm_dir ) as f:
 
 d = {}
 
-turn_password = subprocess.check_output(["config-get", "turn_password"], stderr=subprocess.STDOUT)
-#homestead_domain = subprocess.check_output(["config-get", "homestead_domain"])
-#sprout_domain = subprocess.check_output(["config-get", "sprout_domain"])
+turn_workaround = subprocess.check_output(["config-get", "turn_workaround"], stderr=subprocess.STDOUT)
+
+local_hostname = subprocess.check_output(["unit-get", "private-address"], stderr=subprocess.STDOUT)
+public_hostname = subprocess.check_output(["unit-get", "public-address"], stderr=subprocess.STDOUT)
+local_ip = socket.gethostbyname(local_hostname.rstrip())
+public_ip = socket.gethostbyname(public_hostname.rstrip())
+
+home_domain = subprocess.check_output(["config-get", "home_domain"], stderr=subprocess.STDOUT)
+sprout_domain = subprocess.check_output(["config-get", "sprout_domain"], stderr=subprocess.STDOUT)
+hs_domain = subprocess.check_output(["config-get", "homestead_domain"], stderr=subprocess.STDOUT)
+hs_prov_domain = subprocess.check_output(["config-get", "homestead_domain"], stderr=subprocess.STDOUT)
+xdms_domain = subprocess.check_output(["config-get", "homer_domain"], stderr=subprocess.STDOUT)
+ralf_domain = subprocess.check_output(["config-get", "ralf_domain"], stderr=subprocess.STDOUT)
+sas_domain = subprocess.check_output(["config-get", "sas_domain"], stderr=subprocess.STDOUT)
 
 # populate dictionary
-#d[REPO] = repo
-d['TURN_PASSWORD'] = turn_password
-#d[HOMESTEAD_DOMAIN] = homestead_domain
-#d[SPROUT_DOMAIN] = sprout_domain
-#d[HOMER_DOMAIN] = homer_domain
-#d[ELLIS_DOMAIN] = ellis_domain
-#d[RALF_DOMAIN] = ralf_domain
-#d[HOME_DOMAIN] = home_domain
-#d[SAS_DOMAIN] = sas_domain
-#d[ENUM_DOMAIN] = enum_domain
+d['TURN_WORKAROUND'] = turn_workaround
+
+d['LOCAL_IP'] = local_ip.rstrip()
+d['PUBLIC_IP'] = public_ip.rstrip()
+d['PUBLIC_HOSTNAME'] = public_hostname.rstrip()
+
+d['HOME_DOMAIN'] = home_domain or "localhost"
+d['SPROUT_HOSTNAME'] = sprout_domain or "localhost"
+d['HS_HOSTNAME'] = hs_domain or "localhost"
+d['HS_PROVISIONING_HOSTNAME'] = hs_prov_domain or "localhost"
+d['XDMS_HOSTNAME'] = xdms_domain or "localhost"
+d['RALF_HOSTNAME'] = ralf_domain or "localhost"
+d['SAS_SERVER'] = sas_domain or "localhost"
 
 result = src.substitute(d)
-#out = open("/etc/clearwater/config", 'w')
 with open("/etc/clearwater/config", 'w') as f:
 	f.write(result)
-#sudo cat > /etc/clearwater/config << result
 
