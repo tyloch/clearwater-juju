@@ -1,0 +1,19 @@
+#!/bin/bash
+turn_password=`config-get turn_password`
+
+#homestead_domain=`config-get turn_password`
+#sprout_domain=`config-get turn_password`
+#homer_domain=`config-get turn_password`
+#ellis_domain=`config-get turn_password`
+#ralf_domain=`config-get turn_password`
+#home_domain=`config-get turn_password`
+#sas_domain=`config-get turn_password`
+#enum_domain=`config-get turn_password`
+
+#sudo mkdir /etc/clearwater
+#sudo touch /etc/clearwater/config
+
+sudo cat > /etc/clearwater/config <<'EOP'
+turn_password=$turn_password
+EOP
+

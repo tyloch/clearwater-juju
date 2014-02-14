@@ -1,0 +1,22 @@
+#!/bin/bash
+# Create/Update the solo.rb file
+# TODO this should pull in from the config files
+sudo touch /home/ubuntu/chef-solo/solo.rb
+sudo cat > /home/ubuntu/chef-solo/solo.rb <<'EOP'
+file_cache_path "/var/chef-solo"
+cookbook_path  [
+    "/home/ubuntu/chef-solo/cookbooks"
+]
+environment_path "/home/ubuntu/chef-solo/environments"
+role_path "/home/ubuntu/chef-solo/roles"
+verbose_logging true
+log_level :debug
+
+# MMonit server credentials, if any.
+knife[:mmonit_server]     = "mmonit.cw-ngv.com"
+knife[:mmonit_username]   = "monit"
+knife[:mmonit_password]   = "dja2371jsd33"
+
+# Create deployment in the same availability zone
+knife[:availability_zone] = "us-east-1a"
+EOP

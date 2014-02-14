@@ -1,0 +1,3 @@
+bono-juju:
+  turn_password: password2
+  repo: http://repo.cw-ngv.com/latest
