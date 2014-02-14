@@ -8,6 +8,6 @@ options:
     description: Maximum session expiry time (sec)
     type: int
   repo:
-    default: http://repo.cw-ngv.com/latest
+    default: http://repo.cw-ngv.com/stable
     description: The location of the repo server
     type: string

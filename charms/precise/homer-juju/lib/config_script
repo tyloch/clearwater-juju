@@ -1,0 +1,43 @@
+#!/usr/bin/python
+import subprocess
+import string
+import socket
+import os
+
+#open template file
+charm_dir = os.environ['CHARM_DIR']
+with open( '%s/lib/config_template.txt' % charm_dir ) as f:
+	src = string.Template( f.read() )
+
+d = {}
+
+local_hostname = subprocess.check_output(["unit-get", "private-address"], stderr=subprocess.STDOUT)
+public_hostname = subprocess.check_output(["unit-get", "public-address"], stderr=subprocess.STDOUT)
+local_ip = socket.gethostbyname(local_hostname.rstrip())
+public_ip = socket.gethostbyname(public_hostname.rstrip())
+
+home_domain = subprocess.check_output(["config-get", "home_domain"], stderr=subprocess.STDOUT)
+sprout_domain = subprocess.check_output(["config-get", "sprout_domain"], stderr=subprocess.STDOUT)
+hs_domain = subprocess.check_output(["config-get", "homestead_domain"], stderr=subprocess.STDOUT)
+hs_prov_domain = subprocess.check_output(["config-get", "homestead_domain"], stderr=subprocess.STDOUT)
+xdms_domain = subprocess.check_output(["config-get", "homer_domain"], stderr=subprocess.STDOUT)
+ralf_domain = subprocess.check_output(["config-get", "ralf_domain"], stderr=subprocess.STDOUT)
+sas_domain = subprocess.check_output(["config-get", "sas_domain"], stderr=subprocess.STDOUT)
+
+# populate dictionary
+d['LOCAL_IP'] = local_ip.rstrip()
+d['PUBLIC_IP'] = public_ip.rstrip()
+d['PUBLIC_HOSTNAME'] = public_hostname.rstrip()
+
+d['HOME_DOMAIN'] = home_domain or "localhost"
+d['SPROUT_HOSTNAME'] = sprout_domain or "localhost"
+d['HS_HOSTNAME'] = hs_domain or "localhost"
+d['HS_PROVISIONING_HOSTNAME'] = hs_prov_domain or "localhost"
+d['XDMS_HOSTNAME'] = xdms_domain or "localhost"
+d['RALF_HOSTNAME'] = ralf_domain or "localhost"
+d['SAS_SERVER'] = sas_domain or "localhost"
+
+result = src.substitute(d)
+#out = open("/etc/clearwater/config", 'w')
+with open("/etc/clearwater/config", 'w') as f:
+	f.write(result)
