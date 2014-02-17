@@ -56,6 +56,17 @@ class Route53
     end
   end
 
+  def clean
+    record_sets = @zone.resource_record_sets
+    record_sets.each do |rs|
+      if rs.type == "A"
+        rs.delete
+      end
+    end
+  end
+
+private
+
   def self.parse_options
     options = {}
     opts = OptionParser.new do |opts|
@@ -84,7 +95,7 @@ class Route53
 
     opts.parse!
 
-    [:access_key, :secret_key, :zone, :role, :address].each do |s|
+    [:access_key, :secret_key, :zone].each do |s|
       if options[s].nil?
         puts opts
         exit
