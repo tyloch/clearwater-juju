@@ -14,3 +14,6 @@ public_hostname=$PUBLIC_HOSTNAME
 
 # Registration
 reg_max_expires=$REG_MAX_EXPIRES
+
+chronos_hostname=localhost:7253
+
