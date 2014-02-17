@@ -38,3 +38,4 @@ chef-solo -c /home/ubuntu/chef-solo/solo.rb -j /home/ubuntu/chef-solo/node.json
 # Expose the correct ports
 open-port 22/tcp
 open-port 123/udp
+open-port 161/udp
