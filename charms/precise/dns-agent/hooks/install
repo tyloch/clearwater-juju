@@ -1,9 +1,8 @@
 #!/bin/bash
-# Here do anything needed to install the service
-# i.e. apt-get install -y foo  or  bzr branch http://myserver/mycode /srv/webroot
-# Make sure this hook exits cleanly and is idempotent, common problems here are
-# failing to account for a debconf question on a dependency, or trying to pull
-# from github without installing git first.
 
 apt-get install -y ruby1.9.3 build-essential libxslt1-dev
 gem install aws-sdk --no-ri --no-rdoc
+
+ruby lib/clean.rb --access_key `config-get access_key` \
+                  --secret_key `config-get secret_key` \
+                  --zone `config-get zone`
