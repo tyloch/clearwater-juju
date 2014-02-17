@@ -11,6 +11,3 @@ sas_server=$SAS_SERVER
 local_ip=$LOCAL_IP
 public_ip=$PUBLIC_IP
 public_hostname=$PUBLIC_HOSTNAME
-
-# Keys
-turn_workaround=$TURN_WORKAROUND

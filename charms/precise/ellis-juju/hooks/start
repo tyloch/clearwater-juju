@@ -3,4 +3,4 @@
 # Note that currently this is run directly after install
 # i.e. 'service apache2 start'
 sudo service monit start
-sudo monit start bono
+sudo monit start ellis

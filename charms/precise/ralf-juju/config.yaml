@@ -1,0 +1,5 @@
+options:
+  repo:
+    default: http://repo.cw-ngv.com/latest
+    description: The location of the repo server
+    type: string
