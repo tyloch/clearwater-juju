@@ -1,5 +1,5 @@
 options:
-  turn_password: 
+  turn_workaround: 
     default: ""
     description: TURN workaround password, used by faulty WebRTC clients
     type: string

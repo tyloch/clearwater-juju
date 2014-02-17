@@ -12,5 +12,5 @@ local_ip=$LOCAL_IP
 public_ip=$PUBLIC_IP
 public_hostname=$PUBLIC_HOSTNAME
 
-# Keys
-turn_workaround=$TURN_WORKAROUND
+hss_hostname=0.0.0.0
+hss_port=3868

@@ -1,0 +1,13 @@
+options:
+  reg_min_expires:
+    default: 300
+    description: Minimum registration expiry time (sec)
+    type: int
+  session_max_expires:
+    default: 600
+    description: Maximum session expiry time (sec)
+    type: int
+  repo:
+    default: http://repo.cw-ngv.com/stable
+    description: The location of the repo server
+    type: string

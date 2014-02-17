@@ -12,5 +12,5 @@ local_ip=$LOCAL_IP
 public_ip=$PUBLIC_IP
 public_hostname=$PUBLIC_HOSTNAME
 
-# Keys
-turn_workaround=$TURN_WORKAROUND
+# Registration
+reg_max_expires=$REG_MAX_EXPIRES

@@ -1,10 +1,9 @@
 # Deployment definitions
 home_domain=$HOME_DOMAIN
-sprout_hostname=$SPROUT_DOMAIN
+sprout_hostname=$SPROUT_HOSTNAME
 hs_hostname=$HS_HOSTNAME
-chronos_hostname=$CHRONOS_HOSTNAME
-hs_provisioning_hostname=$HS_PROV_HOSTNAME
-xdms_hostname=$HOMER_HOSTNAME
+hs_provisioning_hostname=$HS_PROVISIONING_HOSTNAME
+xdms_hostname=$XDMS_HOSTNAME
 ralf_hostname=$RALF_HOSTNAME
 sas_server=$SAS_SERVER
 
@@ -12,6 +11,3 @@ sas_server=$SAS_SERVER
 local_ip=$LOCAL_IP
 public_ip=$PUBLIC_IP
 public_hostname=$PUBLIC_HOSTNAME
-
-# Keys
-turn_workaround=$TURN_WORKAROUND

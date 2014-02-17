@@ -1,0 +1,17 @@
+name: sprout-juju
+summary: <Fill in summary here>
+maintainer: Ubuntu <Ubuntu@ip-10-183-170-125.ec2.internal>
+description: |
+  <Multi-line description here>
+categories:
+  - misc
+subordinate: false
+provides:
+  provides-relation:
+    interface: interface-name
+requires:
+  requires-relation:
+    interface: interface-name
+peers:
+  peer-relation:
+    interface: interface-name
