@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# This covers installing chef-solo and the Clearwater chef recipes
+# Install needed libraries (TODO libs?)
+apt-get -y install git libxml2-dev libxslt1-dev wget curl
+
+# Install chef
+install_sh="http://opscode.com/chef/install.sh"
+version_string="-v 11.4.0"
+bash <(wget  ${install_sh} -O -) ${version_string}
+
+# Pull down the Clearwater chef recipes
+mkdir /home/ubuntu/chef-solo
+git clone -b stable git://github.com/Metaswitch/chef.git /home/ubuntu/chef-solo
+
+# TODO Shouldn't need to change branch - this can be removed when this 
+# branch is merged to master
+cd /home/ubuntu/chef-solo
+git checkout em_disconnect
+
+cd /home/ubuntu/chef-solo
+git submodule update --init

@@ -8,7 +8,7 @@ $CHARM_DIR/lib/create_solo_file
 # Add the node-specific info
 touch /home/ubuntu/chef-solo/node.json
 cat > /home/ubuntu/chef-solo/node.json <<'EOP'
-{"run_list":["role[bono]"]}
+{"run_list":["role[ellis]"]}
 EOP
 
 # This stops the save from borking
@@ -37,13 +37,7 @@ chef-solo -c /home/ubuntu/chef-solo/solo.rb -j /home/ubuntu/chef-solo/node.json
 
 # Expose the correct ports
 open-port 22/tcp
+open-port 80/tcp
 open-port 123/udp
 open-port 161/udp
-open-port 3478/tcp
-open-port 3478/udp
-open-port 5060/tcp
-open-port 5060/udp
-open-port 5062/tcp
-open-port 6666/tcp
-# open-port doesn't currently support ranges
-#open-port 32768-65535/udp
+open-port 443/tcp

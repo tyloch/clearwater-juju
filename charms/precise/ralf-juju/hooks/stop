@@ -6,4 +6,4 @@
 # balancer to stop sending traffic.
 # rm /srv/webroot/server-live.txt && sleep 30
 sudo service monit start
-sudo monit stop bono
+sudo monit stop ralf

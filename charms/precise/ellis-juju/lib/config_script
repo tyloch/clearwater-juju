@@ -11,8 +11,6 @@ with open( '%s/lib/config_template.txt' % charm_dir ) as f:
 
 d = {}
 
-turn_workaround = subprocess.check_output(["config-get", "turn_workaround"], stderr=subprocess.STDOUT)
-
 local_hostname = subprocess.check_output(["unit-get", "private-address"], stderr=subprocess.STDOUT)
 public_hostname = subprocess.check_output(["unit-get", "public-address"], stderr=subprocess.STDOUT)
 local_ip = socket.gethostbyname(local_hostname.rstrip())
@@ -26,9 +24,13 @@ xdms_domain = subprocess.check_output(["config-get", "homer_domain"], stderr=sub
 ralf_domain = subprocess.check_output(["config-get", "ralf_domain"], stderr=subprocess.STDOUT)
 sas_domain = subprocess.check_output(["config-get", "sas_domain"], stderr=subprocess.STDOUT)
 
-# populate dictionary
-d['TURN_WORKAROUND'] = turn_workaround
+smtp_server = subprocess.check_output(["config-get", "smtp_server"], stderr=subprocess.STDOUT)
+smtp_username = subprocess.check_output(["config-get", "smtp_username"], stderr=subprocess.STDOUT)
+smtp_password = subprocess.check_output(["config-get", "smtp_password"], stderr=subprocess.STDOUT)
+email_sender = subprocess.check_output(["config-get", "email_sender"], stderr=subprocess.STDOUT)
+signup_key = subprocess.check_output(["config-get", "signup_key"], stderr=subprocess.STDOUT)
 
+# populate dictionary
 d['LOCAL_IP'] = local_ip.rstrip()
 d['PUBLIC_IP'] = public_ip.rstrip()
 d['PUBLIC_HOSTNAME'] = public_hostname.rstrip()
@@ -41,7 +43,13 @@ d['XDMS_HOSTNAME'] = xdms_domain or "localhost"
 d['RALF_HOSTNAME'] = ralf_domain or "localhost"
 d['SAS_SERVER'] = sas_domain or "localhost"
 
+d['SMTP_SMARTHOST'] = smtp_server
+d['SMTP_USERNAME'] = smtp_username
+d['SMTP_PASSWORD'] = smtp_password
+d['EMAIL_RECOVERY_SENDER'] = email_sender
+d['SIGNUP_KEY'] = signup_key
+
 result = src.substitute(d)
+#out = open("/etc/clearwater/config", 'w')
 with open("/etc/clearwater/config", 'w') as f:
 	f.write(result)
-

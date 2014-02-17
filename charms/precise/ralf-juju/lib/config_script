@@ -11,8 +11,6 @@ with open( '%s/lib/config_template.txt' % charm_dir ) as f:
 
 d = {}
 
-turn_workaround = subprocess.check_output(["config-get", "turn_workaround"], stderr=subprocess.STDOUT)
-
 local_hostname = subprocess.check_output(["unit-get", "private-address"], stderr=subprocess.STDOUT)
 public_hostname = subprocess.check_output(["unit-get", "public-address"], stderr=subprocess.STDOUT)
 local_ip = socket.gethostbyname(local_hostname.rstrip())
@@ -27,8 +25,6 @@ ralf_domain = subprocess.check_output(["config-get", "ralf_domain"], stderr=subp
 sas_domain = subprocess.check_output(["config-get", "sas_domain"], stderr=subprocess.STDOUT)
 
 # populate dictionary
-d['TURN_WORKAROUND'] = turn_workaround
-
 d['LOCAL_IP'] = local_ip.rstrip()
 d['PUBLIC_IP'] = public_ip.rstrip()
 d['PUBLIC_HOSTNAME'] = public_hostname.rstrip()
@@ -42,6 +38,6 @@ d['RALF_HOSTNAME'] = ralf_domain or "localhost"
 d['SAS_SERVER'] = sas_domain or "localhost"
 
 result = src.substitute(d)
+#out = open("/etc/clearwater/config", 'w')
 with open("/etc/clearwater/config", 'w') as f:
 	f.write(result)
-

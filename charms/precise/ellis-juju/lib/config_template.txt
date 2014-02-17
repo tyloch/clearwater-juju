@@ -12,5 +12,11 @@ local_ip=$LOCAL_IP
 public_ip=$PUBLIC_IP
 public_hostname=$PUBLIC_HOSTNAME
 
+# Email server configuration
+smtp_smarthost=$SMTP_SMARTHOST
+smtp_username=$SMTP_USERNAME
+smtp_password=$SMTP_PASSWORD
+email_recovery_sender=$EMAIL_RECOVERY_SENDER
+
 # Keys
-turn_workaround=$TURN_WORKAROUND
+signup_key=$SIGNUP_KEY
