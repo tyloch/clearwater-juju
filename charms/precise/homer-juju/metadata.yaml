@@ -6,7 +6,7 @@ categories:
   - misc
 subordinate: false
 requires:
-  register-homer-juju:
+  dns-agent:
     interface: dns-register
 peers:
   homer-relation:
