@@ -3,11 +3,11 @@ options:
     description: The DNS root zone for this manager
     type: string
   sas:
-    default: “”
+    default: ""
     description: The location of the SAS server
     type: string
   enum:
-    default: “”
+    default: ""
     description: The location of the ENUM server
     type: string
   access_key:
