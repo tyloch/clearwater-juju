@@ -4,6 +4,6 @@ options:
     description: TURN workaround password, used by faulty WebRTC clients
     type: string
   repo:
-    default: http://repo.cw-ngv.com/latest
+    default: http://repo.cw-ngv.com/stable
     description: The location of the repo server
     type: string
