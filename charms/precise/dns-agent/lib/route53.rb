@@ -2,6 +2,7 @@
 
 require 'aws-sdk'
 require 'optparse'
+require 'resolv'
 
 class Route53
   def initialize(access_key, secret_key, zone)
@@ -89,7 +90,7 @@ private
       end
 
       opts.on("--address ADDRESS", String, "IP address of the node") do |address|
-        options[:address] = address
+        options[:address] = Resolv.getaddress(address)
       end
     end
 
