@@ -2,7 +2,7 @@
 
 set -e
 
-peer_ip=`relation-get private-address`
+peer_ip=`relation-get public-address`
 root_zone=`config-get zone`
 
 if [[ -z $peer_ip ]]

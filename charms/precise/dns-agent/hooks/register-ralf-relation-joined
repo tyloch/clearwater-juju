@@ -2,7 +2,7 @@
 
 set -e
 
-peer_ip=`relation-get public-address`
+peer_ip=`relation-get private-address`
 root_zone=`config-get zone`
 
 if [[ -z $peer_ip ]]
@@ -11,12 +11,12 @@ then
   exit 0;
 fi
 
-juju-log "Discovered new ellis node: $peer_ip"
+juju-log "Discovered new ralf node: $peer_ip"
 
 ruby $CHARM_DIR/lib/add_address.rb --access-key `config-get access_key` \
                                    --secret-key `config-get secret_key` \
                                    --zone `config-get zone`             \
-                                   --role ellis                         \
+                                   --role ralf                          \
                                    --address $peer_ip
 
 $CHARM_DIR/lib/declare_domains.sh $root_zone

@@ -11,12 +11,12 @@ then
   exit 0;
 fi
 
-juju-log "Lost a homestead node: $peer_ip"
+juju-log "Lost a ralf node: $peer_ip"
 
 ruby $CHARM_DIR/lib/remove_address.rb --access-key `config-get access_key` \
                                       --secret-key `config-get secret_key` \
                                       --zone `config-get zone`             \
-                                      --role homestead                     \
+                                      --role ralf                          \
                                       --address $peer_ip
 
 $CHARM_DIR/lib/declare_domains.sh $root_zone

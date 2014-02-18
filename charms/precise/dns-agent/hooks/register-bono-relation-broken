@@ -2,16 +2,16 @@
 
 set -e
 
-peer_ip=`relation-get private-address`
+peer_ip=`relation-get public-address`
 root_zone=`config-get zone`
 
 if [[ -z $peer_ip ]]
 then
-  juju-log "Peer connected but has no IP address"
+  juju-log "Peer disconnected but has no IP address"
   exit 0;
 fi
 
-juju-log "Discovered new bono node: $peer_ip"
+juju-log "Lost a bono node: $peer_ip"
 
 ruby $CHARM_DIR/lib/remove_address.rb --access-key `config-get access_key` \
                                       --secret-key `config-get secret_key` \
