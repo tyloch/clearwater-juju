@@ -17,5 +17,7 @@ provides:
     interface: dns-register
   register-bono:
     interface: dns-register
+  register-ralf:
+    interface: dns-register
   register-ellis:
     interface: dns-register
