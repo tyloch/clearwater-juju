@@ -3,6 +3,7 @@ import subprocess
 import string
 import socket
 import os
+import urllib2
 
 #open template file
 charm_dir = os.environ['CHARM_DIR']
@@ -14,7 +15,8 @@ d = {}
 local_hostname = subprocess.check_output(["unit-get", "private-address"], stderr=subprocess.STDOUT)
 public_hostname = subprocess.check_output(["unit-get", "public-address"], stderr=subprocess.STDOUT)
 local_ip = socket.gethostbyname(local_hostname.rstrip())
-public_ip = socket.gethostbyname(public_hostname.rstrip())
+response = urllib2.urlopen('http://169.254.169.254/latest/meta-data/public-ipv4')
+public_ip = response.read()
 
 try:
         home_domain = subprocess.check_output(["relation-get", "home_domain"], stderr=subprocess.STDOUT)
