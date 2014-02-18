@@ -7,11 +7,11 @@ root_zone=`config-get zone`
 
 if [[ -z $peer_ip ]]
 then
-  juju-log "Peer connected but has no IP address"
+  juju-log "Peer disconnected but has no IP address"
   exit 0;
 fi
 
-juju-log "Discovered new ellis node: $peer_ip"
+juju-log "Lost an ellis node: $peer_ip"
 
 ruby $CHARM_DIR/lib/remove_address.rb --access-key `config-get access_key` \
                                       --secret-key `config-get secret_key` \
