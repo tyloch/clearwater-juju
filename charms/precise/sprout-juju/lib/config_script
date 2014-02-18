@@ -4,7 +4,6 @@ import string
 import socket
 import os
 import urllib2
-#import requests
 
 #open template file
 charm_dir = os.environ['CHARM_DIR']
