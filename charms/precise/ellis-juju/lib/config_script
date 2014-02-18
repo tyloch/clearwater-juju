@@ -16,13 +16,22 @@ public_hostname = subprocess.check_output(["unit-get", "public-address"], stderr
 local_ip = socket.gethostbyname(local_hostname.rstrip())
 public_ip = socket.gethostbyname(public_hostname.rstrip())
 
-home_domain = subprocess.check_output(["relation-get", "home_domain"], stderr=subprocess.STDOUT)
-sprout_domain = subprocess.check_output(["relation-get", "sprout_domain"], stderr=subprocess.STDOUT)
-hs_domain = subprocess.check_output(["relation-get", "homestead_domain"], stderr=subprocess.STDOUT)
-hs_prov_domain = subprocess.check_output(["relation-get", "provisioning_domain"], stderr=subprocess.STDOUT)
-xdms_domain = subprocess.check_output(["relation-get", "homer_domain"], stderr=subprocess.STDOUT)
-ralf_domain = subprocess.check_output(["relation-get", "ralf_domain"], stderr=subprocess.STDOUT)
-sas_domain = subprocess.check_output(["relation-get", "sas_domain"], stderr=subprocess.STDOUT)
+try:
+        home_domain = subprocess.check_output(["relation-get", "home_domain"], stderr=subprocess.STDOUT)
+        sprout_domain = subprocess.check_output(["relation-get", "sprout_domain"], stderr=subprocess.STDOUT)
+        hs_domain = subprocess.check_output(["relation-get", "homestead_domain"], stderr=subprocess.STDOUT)
+        hs_prov_domain = subprocess.check_output(["relation-get", "provisioning_domain"], stderr=subprocess.STDOUT)
+        xdms_domain = subprocess.check_output(["relation-get", "homer_domain"], stderr=subprocess.STDOUT)
+        ralf_domain = subprocess.check_output(["relation-get", "ralf_domain"], stderr=subprocess.STDOUT)
+        sas_domain = subprocess.check_output(["relation-get", "sas_domain"], stderr=subprocess.STDOUT)
+except subprocess.CalledProcessError:
+        home_domain = "localhost"
+        sprout_domain = "localhost"
+        hs_domain = "localhost:8888"
+        hs_prov_domain = "localhost:8889"
+        xdms_domain = "localhost:7888"
+        ralf_domain = "localhost:9888"
+        sas_domain = "0.0.0.0"
 
 smtp_server = subprocess.check_output(["config-get", "smtp_server"], stderr=subprocess.STDOUT)
 smtp_username = subprocess.check_output(["config-get", "smtp_username"], stderr=subprocess.STDOUT)
@@ -41,7 +50,7 @@ d['HS_HOSTNAME'] = hs_domain or "localhost:8888"
 d['HS_PROVISIONING_HOSTNAME'] = hs_prov_domain or "localhost:8889"
 d['XDMS_HOSTNAME'] = xdms_domain or "localhost:7888"
 d['RALF_HOSTNAME'] = ralf_domain or "localhost:9888"
-d['SAS_SERVER'] = sas_domain or "localhost"
+d['SAS_SERVER'] = sas_domain or "0.0.0.0"
 
 d['SMTP_SMARTHOST'] = smtp_server
 d['SMTP_USERNAME'] = smtp_username
