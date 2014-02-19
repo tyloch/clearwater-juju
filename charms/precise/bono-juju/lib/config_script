@@ -28,6 +28,7 @@ try:
         xdms_domain = subprocess.check_output(["relation-get", "homer_domain"], stderr=subprocess.STDOUT)
         ralf_domain = subprocess.check_output(["relation-get", "ralf_domain"], stderr=subprocess.STDOUT)
         sas_domain = subprocess.check_output(["relation-get", "sas_domain"], stderr=subprocess.STDOUT)
+        enum_domain = subprocess.check_output(["relation-get", "enum_domain"], stderr=subprocess.STDOUT)
 except subprocess.CalledProcessError:
         home_domain = "localhost"
         sprout_domain = "localhost"
@@ -36,6 +37,7 @@ except subprocess.CalledProcessError:
         xdms_domain = "localhost:7888"
         ralf_domain = "localhost:9888"
         sas_domain = "0.0.0.0"
+        enum_domain = ""
 
 # populate dictionary
 d['TURN_WORKAROUND'] = turn_workaround
@@ -44,14 +46,19 @@ d['LOCAL_IP'] = local_ip.rstrip()
 d['PUBLIC_IP'] = public_ip.rstrip()
 d['PUBLIC_HOSTNAME'] = public_hostname.rstrip()
 
-d['HOME_DOMAIN'] = home_domain or "localhost"
-d['SPROUT_HOSTNAME'] = sprout_domain or "localhost"
-d['HS_HOSTNAME'] = hs_domain or "localhost:8888"
-d['HS_PROVISIONING_HOSTNAME'] = hs_prov_domain or "localhost:8889"
-d['XDMS_HOSTNAME'] = xdms_domain or "localhost:7888"
-d['RALF_HOSTNAME'] = ralf_domain or "localhost:9888"
-d['SAS_SERVER'] = sas_domain or "0.0.0.0"
+d['HOME_DOMAIN'] = home_domain.rstrip() or "localhost"
+d['SPROUT_HOSTNAME'] = sprout_domain.rstrip() or "localhost"
+d['HS_HOSTNAME'] = hs_domain.rstrip() or "localhost:8888"
+d['HS_PROVISIONING_HOSTNAME'] = hs_prov_domain.rstrip() or "localhost:8889"
+d['XDMS_HOSTNAME'] = xdms_domain.rstrip() or "localhost:7888"
+d['RALF_HOSTNAME'] = ralf_domain.rstrip() or "localhost:9888"
+d['SAS_SERVER'] = sas_domain.rstrip() or "0.0.0.0"
 
+if enum_domain:
+        d['ENUM_SERVER'] = "enum_server=" + enum_domain.rstrip()
+else:
+        d['ENUM_SERVER'] = ""
+	
 result = src.substitute(d)
 with open("/etc/clearwater/config", 'w') as f:
 	f.write(result)
