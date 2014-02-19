@@ -2,5 +2,8 @@
 # Here put anything that is needed to start the service.
 # Note that currently this is run directly after install
 # i.e. 'service apache2 start'
-sudo service monit start
-sudo monit start bono
+service monit stop
+service bono start
+service monit start
+sleep 1
+monit monitor bono

@@ -13,3 +13,5 @@ chmod 755 /etc/clearwater/config
 
 # Restart clearwater-infrastructure
 service clearwater-infrastructure restart
+service homestead stop
+service homestead-prov stop

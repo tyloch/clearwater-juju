@@ -6,7 +6,7 @@ categories:
   - misc
 subordinate: false
 requires:
-  register-ralf-juju:
+  dns-agent:
     interface: dns-register
 peers:
   ralf-relation:
