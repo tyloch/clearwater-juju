@@ -8,7 +8,15 @@ $CHARM_DIR/lib/create_solo_file
 # Add the node-specific info
 touch /home/ubuntu/chef-solo/node.json
 cat > /home/ubuntu/chef-solo/node.json <<'EOP'
-{"run_list":["role[ellis]"]}
+{
+  "run_list":["role[ellis]"],
+  "clearwater": {
+    "number_start": 0,
+    "number_count": 0,
+    "pstn_number_start": 0,
+    "pstn_number_count": 0
+  }
+}
 EOP
 
 # This stops the save from borking
