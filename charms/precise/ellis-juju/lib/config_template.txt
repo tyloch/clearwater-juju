@@ -20,3 +20,5 @@ email_recovery_sender=$EMAIL_RECOVERY_SENDER
 
 # Keys
 signup_key=$SIGNUP_KEY
+ellis_cookie_key=$COOKIE_KEY
+ellis_api_key=$API_KEY
