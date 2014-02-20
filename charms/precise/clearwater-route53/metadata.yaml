@@ -1,7 +1,7 @@
 name: clearwater-route53
 summary: Route53 DNS Agent for Project Clearwater
-maintainer: Andy Caldwell <andrew.caldwell@metaswitch.com>
-description: blah
+maintainer: Project Clearwater Maintainers <maintainers@projectclearwater.org>
+description: Updates DNS records for Clearwater using AWS Route53 service
 
 categories:
   - miscellaneous

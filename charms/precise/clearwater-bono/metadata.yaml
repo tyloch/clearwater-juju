@@ -8,4 +8,3 @@ subordinate: false
 requires:
   dns-agent:
     interface: dns-register
-peers:
