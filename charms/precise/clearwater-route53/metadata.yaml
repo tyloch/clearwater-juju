@@ -1,4 +1,4 @@
-name: dns-agent
+name: clearwater-route53
 summary: Route53 DNS Agent for Project Clearwater
 maintainer: Andy Caldwell <andrew.caldwell@metaswitch.com>
 description: blah

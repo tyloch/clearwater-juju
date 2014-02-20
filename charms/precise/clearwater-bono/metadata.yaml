@@ -1,6 +1,6 @@
-name: bono-juju
+name: clearwater-bono
 summary: Bono charm for Project Clearwater
-maintainer: Project Clearwater
+maintainer: Project Clearwater Maintainers <maintainers@projectclearwater.org>
 description: Bono charm for Project Clearwater
 categories:
   - misc
@@ -9,5 +9,3 @@ requires:
   dns-agent:
     interface: dns-register
 peers:
-  bono-relation:
-    interface: bono-interface

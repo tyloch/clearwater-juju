@@ -1,0 +1,37 @@
+# Overview
+
+This charm supports deployment and scaling of the Sprout component of a Project Clearwater system.  See http://www.projectclearwater.org for details of Project Clearwater.
+
+# Usage
+
+The Sprout service can be deployed by creating a suitable config.yaml file then running
+
+    juju deploy --config config.yaml clearwater-sprout
+    juju add-relation clearwater-sprout <dns-service>
+
+The only currently supported DNS service for Clearwater is clearwater-route53 (when deploying in Amazon EC2).  Additional DNS services will be added for other environments in future.
+
+The Sprout configuration file takes the following format.
+
+clearwater-sprout:
+  reg_min_expires: 400
+  session_max_expires: 900
+  repo: http://repo.cw-ngv.com/stable
+
+## Scale out Usage
+
+## Known Limitations and Issues
+
+clearwater-sprout currently only supports running as a single unit.  Clustering support will be released shortly, which will allow units to be added to and removed from a clearwater-sprout deployment using juju add-unit and juju remove-unit commandas.
+
+# Configuration
+
+# Contact Information
+
+## Upstream Project Name
+
+See http:www.projectclearwater.org and https://github.com/Metaswitch/clearwater-docs/wiki for information about clearwater.
+
+Clearwater source code and issue list can be found at https://github.com/Metaswitch/.
+
+The Clearwater mailing list is at lists.projectclearwater.org.
