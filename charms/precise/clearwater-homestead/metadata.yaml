@@ -1,0 +1,13 @@
+name: clearwater-homestead
+summary: Homestead charm for Project Clearwater
+maintainer: Project Clearwater Maintainers <maintainers@projectclearwater.org>
+description: Homestead charm for Project Clearwater
+categories:
+  - misc
+subordinate: false
+requires:
+  dns-agent:
+    interface: dns-register
+peers:
+  homestead-relation:
+    interface: homestead-interface
