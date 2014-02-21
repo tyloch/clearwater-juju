@@ -7,6 +7,7 @@ if [ $this_index -gt $peer_index ]
   then
     # Remove this node. 
     monit unmonitor sprout
+    monit unmonitor poll_sprout    
     service sprout start-quiesce
   else
     file_name="/home/ubuntu/chef-solo/data_bags/node/"$peer_index".json"
