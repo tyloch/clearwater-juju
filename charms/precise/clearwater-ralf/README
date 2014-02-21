@@ -69,13 +69,13 @@ Clearwater has a number of configuration fields which are non-defaultable.  Thes
 
 clearwater-route53
 
--  ```zone:``` This must be set to a DNS zone name which is managed by the AWS Route53 service.
--  ```access_key:``` and ```secret_key:``` These must be set to the AWS access key and secret key of the AWS account which owns the DNS zone name.
+-  `zone:` This must be set to a DNS zone name which is managed by the AWS Route53 service.
+-  `access_key:` and `secret_key:` These must be set to the AWS access key and secret key of the AWS account which owns the DNS zone name.
 
 clearwater-ellis
 
--  ```signup_key:``` This is used as a signup key on the Ellis self-provisioning portal, so should be set to a unique string for each installation.
--  ```base_number:``` and ```number_count:``` These define the telephone number range assigned to the Clearwater system.
+-  `signup_key:` This is used as a signup key on the Ellis self-provisioning portal, so should be set to a unique string for each installation.
+-  `base_number:` and `number_count:` These define the telephone number range assigned to the Clearwater system.
 
 # Contact Information
 
