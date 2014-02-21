@@ -1,0 +1,42 @@
+#!/usr/bin/python
+import subprocess
+import string
+import socket
+import os
+import sys
+
+# Open template file
+charm_dir = os.environ['CHARM_DIR']
+with open( '%s/lib/node_template.txt' % charm_dir ) as f:
+	src = string.Template( f.read() )
+
+d = {}
+
+local_ip = socket.gethostbyname(sys.argv[1])
+index = sys.argv[2]
+
+if sys.argv[3] == "True":
+	cluster = ",\n    \"role[clustered]\""
+	clustered = ", \"clustered\""
+else:
+	cluster = ""
+	clustered = ""
+
+if sys.argv[4] == "True":
+	joining = ",\n      \"joining\": true" 
+else:
+	joining = ""
+
+# Populate dictionary
+d['LOCAL_IP'] = local_ip.rstrip()
+d['CLUSTERED'] = clustered
+d['MACHINE_ID'] = index
+d['CLUSTER'] = cluster
+d['JOINING'] = joining
+
+result = src.substitute(d)
+
+node_file = index + ".json"
+with open('/home/ubuntu/chef-solo/data_bags/node/%s' % node_file, 'w') as f:
+	f.write(result)
+

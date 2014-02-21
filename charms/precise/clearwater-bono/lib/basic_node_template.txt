@@ -1,0 +1,10 @@
+{
+  "role": "bono",
+  "roles": ["clearwater-infrastructure", "bono"],
+  "clearwater": {
+    "repo_server": "$REPO"
+  },
+  "run_list": [
+    "role[bono]"
+  ]
+}

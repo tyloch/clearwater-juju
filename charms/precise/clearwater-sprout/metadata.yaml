@@ -9,5 +9,5 @@ requires:
   dns-agent:
     interface: dns-register
 peers:
-  sprout-relation:
+  sprout:
     interface: sprout-interface
