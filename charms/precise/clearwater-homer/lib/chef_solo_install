@@ -11,7 +11,7 @@ bash <(wget  ${install_sh} -O -) ${version_string}
 
 # Pull down the Clearwater chef recipes
 if [ ! -d /home/ubuntu/chef-solo ]
-then
+  then
   mkdir /home/ubuntu/chef-solo
   git clone -b master git://github.com/Metaswitch/chef.git /home/ubuntu/chef-solo
 fi

@@ -56,6 +56,5 @@ else:
         d['ENUM_SERVER'] = ""
 
 result = src.substitute(d)
-#out = open("/etc/clearwater/config", 'w')
 with open("/etc/clearwater/config", 'w') as f:
 	f.write(result)

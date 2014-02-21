@@ -4,8 +4,8 @@
   "chef_environment": "_default",
   "json_class": "Chef::Node",
   "automatic": {
-    "role": "homer",
-    "roles": ["clearwater-infrastructure", "homer"$CLUSTERED],
+    "role": "homestead",
+    "roles": ["clearwater-infrastructure", "homestead"$CLUSTERED],
     "cloud": {
       "local_ipv4": "$LOCAL_IP"
     },
@@ -15,6 +15,6 @@
   },
   "chef_type": "node",
   "run_list": [
-    "role[homer]"$CLUSTER
+    "role[homestead]"$CLUSTER
   ]
 }
