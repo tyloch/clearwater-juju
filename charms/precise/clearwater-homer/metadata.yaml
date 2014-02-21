@@ -9,5 +9,5 @@ requires:
   dns-agent:
     interface: dns-register
 peers:
-  homer-relation:
+  homer:
     interface: homer-interface
