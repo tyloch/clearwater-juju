@@ -71,6 +71,5 @@ d['COOKIE_KEY'] = "secret"
 d['API_KEY'] = "%030x" % random.randrange(16**30)
 
 result = src.substitute(d)
-#out = open("/etc/clearwater/config", 'w')
 with open("/etc/clearwater/config", 'w') as f:
 	f.write(result)

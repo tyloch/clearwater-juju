@@ -1,0 +1,14 @@
+{
+  "role": "ellis",
+  "roles": ["clearwater-infrastructure", "ellis"],
+  "clearwater": {
+    "number_start": 0,
+    "number_count": 0,
+    "pstn_number_start": 0,
+    "pstn_number_count": 0,
+    "repo_server": "$REPO"
+  },
+  "run_list": [
+    "role[ellis]"
+  ]
+}
