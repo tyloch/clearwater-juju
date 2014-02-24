@@ -9,5 +9,5 @@ requires:
   dns-agent:
     interface: dns-register
 peers:
-  homestead-relation:
+  homestead:
     interface: homestead-interface

@@ -1,0 +1,39 @@
+#!/usr/bin/python
+
+import subprocess
+import string
+import socket
+import os
+import sys
+
+# Open template file
+charm_dir = os.environ['CHARM_DIR']
+node_file = "/home/ubuntu/chef-solo/node.json"
+with open( '%s/lib/basic_node_template.txt' % charm_dir ) as f:
+        src = string.Template( f.read() )
+
+d = {}
+
+local_hostname = subprocess.check_output(["unit-get", "private-address"], stderr=subprocess.STDOUT)
+local_ip = socket.gethostbyname(local_hostname.rstrip())
+index = os.environ['JUJU_UNIT_NAME'].split('/')[1]
+repo_server = subprocess.check_output(["config-get", "repo"], stderr=subprocess.STDOUT)
+
+if sys.argv[1] == "True" or (os.path.exists(node_file) and "clustered" in open(node_file).read()):
+        cluster = ",\n    \"role[clustered]\""
+        clustered = ", \"clustered\""
+else:
+        cluster = ""
+        clustered = ""
+
+# Populate dictionary
+d['LOCAL_IP'] = local_ip.rstrip()
+d['CLUSTERED'] = clustered
+d['MACHINE_ID'] = str(int(index) + 1)
+d['REPO'] = repo_server.rstrip()
+d['CLUSTER'] = cluster
+
+result = src.substitute(d)
+
+with open('/home/ubuntu/chef-solo/node.json', 'w') as f:
+        f.write(result)

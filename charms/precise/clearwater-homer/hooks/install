@@ -5,24 +5,11 @@ $CHARM_DIR/lib/chef_solo_install
 # Create the solo.rb file
 $CHARM_DIR/lib/create_solo_file
 
-# Add the node-specific info
-touch /home/ubuntu/chef-solo/node.json
-cat > /home/ubuntu/chef-solo/node.json <<'EOP'
-{"run_list":["role[homer]"]}
-EOP
+this_ip=`unit-get private-address`
+this_index=$(echo $JUJU_UNIT_NAME | cut -d'/' -f2)
 
-# This stops the save from borking
-mkdir -p /etc/chef/ohai/hints
-touch /etc/chef/ohai/hints/ec2.json
-cat > /etc/chef/ohai/hints/ec2.json <<'EOP'
-{}
-EOP
-
-# Update the source list with the correct repo server
-touch /etc/apt/sources.list.d/clearwater.list
-chmod 777 /etc/apt/sources.list.d/clearwater.list
-$CHARM_DIR/lib/source_script
-chmod 644 /etc/apt/sources.list.d/clearwater.list
+$CHARM_DIR/lib/node_script "$this_ip" "$this_index" "False" "False"
+$CHARM_DIR/lib/basic_node_script "False" "False"
 
 # Update the config file
 mkdir /etc/clearwater/
