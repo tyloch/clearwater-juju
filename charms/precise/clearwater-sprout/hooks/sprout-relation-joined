@@ -19,5 +19,3 @@ fi
 $CHARM_DIR/lib/basic_node_script "True"
 
 chef-solo -c /home/ubuntu/chef-solo/solo.rb -j /home/ubuntu/chef-solo/node.json
-
-sleep 10

@@ -24,5 +24,3 @@ if [ $this_index -lt $peer_index ]
   then
   $CHARM_DIR/lib/basic_node_script "True" "True"
 fi
-
-sleep 300
