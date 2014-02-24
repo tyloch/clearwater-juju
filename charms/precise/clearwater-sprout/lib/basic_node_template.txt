@@ -8,7 +8,7 @@
     "local_ipv4": "$LOCAL_IP"
   },
   "clearwater": {
-    "index": "$MACHINE_ID",
+    "index": $MACHINE_ID,
     "repo_server": "$REPO"
   },
   "run_list": [

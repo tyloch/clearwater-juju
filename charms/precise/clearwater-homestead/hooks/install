@@ -8,7 +8,7 @@ $CHARM_DIR/lib/create_solo_file
 this_ip=`unit-get private-address`
 this_index=$(echo $JUJU_UNIT_NAME | cut -d'/' -f2)
 $CHARM_DIR/lib/node_script "$this_ip" "$this_index" "False" "False"
-$CHARM_DIR/lib/basic_node_script "False"
+$CHARM_DIR/lib/basic_node_script "False" "False"
 
 # Update the config file
 mkdir /etc/clearwater/

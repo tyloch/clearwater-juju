@@ -29,7 +29,7 @@ else:
 # Populate dictionary
 d['LOCAL_IP'] = local_ip.rstrip()
 d['CLUSTERED'] = clustered
-d['MACHINE_ID'] = index
+d['MACHINE_ID'] = str(int(index) + 1)
 d['REPO'] = repo_server.rstrip()
 d['CLUSTER'] = cluster
 

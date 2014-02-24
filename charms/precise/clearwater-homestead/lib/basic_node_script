@@ -22,16 +22,22 @@ repo_server = subprocess.check_output(["config-get", "repo"], stderr=subprocess.
 if sys.argv[1] == "True" or (os.path.exists(node_file) and "clustered" in open(node_file).read()):
         cluster = ",\n    \"role[clustered]\""
         clustered = ", \"clustered\""
+
+	if sys.argv[2] == "True" or (os.path.exists(node_file) and "tags" in open(node_file).read()):
+		tag = ",  \"tags\": [\"clustered\"]"
+
 else:
         cluster = ""
         clustered = ""
+	tag = ""
 
 # Populate dictionary
 d['LOCAL_IP'] = local_ip.rstrip()
 d['CLUSTERED'] = clustered
-d['MACHINE_ID'] = index
+d['MACHINE_ID'] = str(int(index) + 1)
 d['REPO'] = repo_server.rstrip()
 d['CLUSTER'] = cluster
+d['TAG'] = tag
 
 result = src.substitute(d)
 

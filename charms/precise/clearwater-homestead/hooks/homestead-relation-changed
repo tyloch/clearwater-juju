@@ -8,5 +8,8 @@ this_index=$(echo $JUJU_UNIT_NAME | cut -d'/' -f2)
 
 $CHARM_DIR/lib/node_script "$peer_ip" "$peer_index" "True" "False"
 $CHARM_DIR/lib/node_script "$this_ip" "$this_index" "True" "False"
-$CHARM_DIR/lib/basic_node_script "True"
+$CHARM_DIR/lib/basic_node_script "True" "False"
+
 chef-solo -c /home/ubuntu/chef-solo/solo.rb -j /home/ubuntu/chef-solo/node.json
+
+$CHARM_DIR/lib/basic_node_script "True" "True"

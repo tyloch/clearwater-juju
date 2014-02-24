@@ -6,7 +6,7 @@ touch /etc/clearwater/config
 $CHARM_DIR/lib/config_script
 chmod 755 /etc/clearwater/config
 
-$CHARM_DIR/lib/basic_node_script "False"
+$CHARM_DIR/lib/basic_node_script "False" "False"
 chef-solo -c /home/ubuntu/chef-solo/solo.rb -j /home/ubuntu/chef-solo/node.json
 
 # Restart clearwater-infrastructure

@@ -16,8 +16,13 @@ if [ $this_index -gt $peer_index ]
     $CHARM_DIR/lib/node_script "$this_ip" "$this_index" "True" "False"
 fi
 
-$CHARM_DIR/lib/basic_node_script "True"
+$CHARM_DIR/lib/basic_node_script "True" "False"
 
 chef-solo -c /home/ubuntu/chef-solo/solo.rb -j /home/ubuntu/chef-solo/node.json
 
-sleep 10
+if [ $this_index -lt $peer_index ]
+  then
+  $CHARM_DIR/lib/basic_node_script "True" "True"
+fi
+
+sleep 300

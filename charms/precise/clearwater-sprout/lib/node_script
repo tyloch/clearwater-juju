@@ -13,7 +13,7 @@ with open( '%s/lib/node_template.txt' % charm_dir ) as f:
 d = {}
 
 local_ip = socket.gethostbyname(sys.argv[1])
-index = sys.argv[2]
+index = str(int(sys.argv[2]) + 1)
 
 if sys.argv[3] == "True":
 	cluster = ",\n    \"role[clustered]\""
