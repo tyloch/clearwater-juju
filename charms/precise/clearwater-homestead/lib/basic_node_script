@@ -25,7 +25,7 @@ if sys.argv[1] == "True" or (os.path.exists(node_file) and "clustered" in open(n
 	tag = ""
 
 	if sys.argv[2] == "True" or (os.path.exists(node_file) and "tags" in open(node_file).read()):
-		tag = ",  \"tags\": [\"clustered\"]"
+		tag = ",\n  \"tags\": [\"clustered\"]"
 
 else:
 	cluster = ""
