@@ -1,13 +1,4 @@
 #!/bin/bash
-public_ip=`curl http://169.254.169.254/latest/meta-data/public-ipv4`
-relation-set public-address=$public_ip
+set -e
 
-# Update the config file
-mkdir /etc/clearwater/
-touch /etc/clearwater/config
-$CHARM_DIR/lib/config_script
-chmod 755 /etc/clearwater/config
-
-# Restart clearwater-infrastructure
-service clearwater-infrastructure restart
-service bono stop
+$CHARM_DIR/lib/dns_hook

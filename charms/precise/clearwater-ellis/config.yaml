@@ -1,7 +1,7 @@
 options:
   smtp_server:
     default: ""
-    description: The SMTP server to send recovery emails from
+    description: The SMTP server to send password recovery emails from
     type: string
   smtp_username:
     default: ""

@@ -1,12 +1,4 @@
 #!/bin/bash
+set -e
 
-# Update the config file
-mkdir /etc/clearwater/
-touch /etc/clearwater/config
-$CHARM_DIR/lib/config_script
-chmod 755 /etc/clearwater/config
-
-# Restart clearwater-infrastructure
-service clearwater-infrastructure restart
-service homestead stop
-service homestead-prov stop
+$CHARM_DIR/lib/dns_hook

@@ -5,57 +5,54 @@ import socket
 import os
 import urllib2
 
-#open template file
-charm_dir = os.environ['CHARM_DIR']
-with open( '%s/lib/config_template.txt' % charm_dir ) as f:
-	src = string.Template( f.read() )
+# Create the /etc/clearwater/config file.
+#
+# Node specific information is got from the charms config, the IP
+# infomation is got from the unit config, and the domain information
+# is got from the relation with the clearwater-route53 charm
+#
+# The config file is templated in lib/config_template.
 
+# Populate the dictionary
 d = {}
 
-local_hostname = subprocess.check_output(["unit-get", "private-address"], stderr=subprocess.STDOUT)
-public_hostname = subprocess.check_output(["unit-get", "public-address"], stderr=subprocess.STDOUT)
-local_ip = socket.gethostbyname(local_hostname.rstrip())
-response = urllib2.urlopen('http://169.254.169.254/latest/meta-data/public-ipv4')
-public_ip = response.read()
+# IP configuration
+d['PUBLIC_HOSTNAME'] = subprocess.check_output(["unit-get", "public-address"])
+d['LOCAL_IP'] = socket.gethostbyname(subprocess.check_output(["unit-get", "private-address"]).rstrip())
+d['PUBLIC_IP'] = urllib2.urlopen('http://169.254.169.254/latest/meta-data/public-ipv4').read()
 
+# Domain configuration
 try:
-        home_domain = subprocess.check_output(["relation-get", "home_domain"], stderr=subprocess.STDOUT)
-        sprout_domain = subprocess.check_output(["relation-get", "sprout_domain"], stderr=subprocess.STDOUT)
-        hs_domain = subprocess.check_output(["relation-get", "homestead_domain"], stderr=subprocess.STDOUT)
-        hs_prov_domain = subprocess.check_output(["relation-get", "provisioning_domain"], stderr=subprocess.STDOUT)
-        xdms_domain = subprocess.check_output(["relation-get", "homer_domain"], stderr=subprocess.STDOUT)
-        ralf_domain = subprocess.check_output(["relation-get", "ralf_domain"], stderr=subprocess.STDOUT)
-        sas_domain = subprocess.check_output(["relation-get", "sas_domain"], stderr=subprocess.STDOUT)
-        enum_domain = subprocess.check_output(["relation-get", "enum_domain"], stderr=subprocess.STDOUT)
+        d['HOME_DOMAIN'] = subprocess.check_output(["relation-get", "home_domain"]).rstrip()
+        d['SPROUT_HOSTNAME'] = subprocess.check_output(["relation-get", "sprout_domain"]).rstrip()
+        d['HS_HOSTNAME'] = subprocess.check_output(["relation-get", "homestead_domain"]).rstrip()
+        d['HS_PROVISIONING_HOSTNAME'] = subprocess.check_output(["relation-get", "provisioning_domain"]).rstrip()
+        d['XDMS_HOSTNAME'] = subprocess.check_output(["relation-get", "homer_domain"]).rstrip()
+        d['RALF_HOSTNAME'] = subprocess.check_output(["relation-get", "ralf_domain"]).rstrip()
+        d['SAS_SERVER'] = subprocess.check_output(["relation-get", "sas_domain"]).rstrip()
+        d['ENUM_SERVER'] = "enum_server=" + subprocess.check_output(["relation-get", "enum_domain"]).rstrip()
 except subprocess.CalledProcessError:
-        home_domain = "localhost"
-        sprout_domain = "localhost"
-        hs_domain = "localhost:8888"
-        hs_prov_domain = "localhost:8889"
-        xdms_domain = "localhost:7888"
-        ralf_domain = "localhost:9888"
-        sas_domain = "0.0.0.0"
-        enum_domain = ""
-
-# populate dictionary
-d['LOCAL_IP'] = local_ip.rstrip()
-d['PUBLIC_IP'] = public_ip.rstrip()
-d['PUBLIC_HOSTNAME'] = public_hostname.rstrip()
-
-d['HOME_DOMAIN'] = home_domain or "localhost"
-d['SPROUT_HOSTNAME'] = sprout_domain or "localhost"
-d['HS_HOSTNAME'] = hs_domain or "localhost:8888"
-d['HS_PROVISIONING_HOSTNAME'] = hs_prov_domain or "localhost:8889"
-d['XDMS_HOSTNAME'] = xdms_domain or "localhost:7888"
-d['RALF_HOSTNAME'] = ralf_domain or "localhost:9888"
-d['SAS_SERVER'] = sas_domain or "0.0.0.0"
-
-if enum_domain:
-        d['ENUM_SERVER'] = "enum_server=" + enum_domain.rstrip()
-else:
+        d['HOME_DOMAIN'] = "localhost"
+        d['SPROUT_HOSTNAME'] = "localhost"
+        d['HS_HOSTNAME'] = "localhost:8888"
+        d['HS_PROVISIONING_HOSTNAME'] = "localhost:8889"
+        d['XDMS_HOSTNAME'] = "localhost:7888"
+        d['RALF_HOSTNAME'] = "localhost:9888"
+        d['SAS_SERVER'] = "0.0.0.0"
         d['ENUM_SERVER'] = ""
 
+# Open the template file
+charm_dir = os.environ['CHARM_DIR']
+with open( '%s/lib/config_template' % charm_dir ) as f:
+        src = string.Template( f.read() )
+
+# Make the substitutions
 result = src.substitute(d)
-#out = open("/etc/clearwater/config", 'w')
+
+# Write to /etc/clearwater/config, creating the clearwater directory
+# if necessary, and set appropriate permissions
+if not os.path.isdir("/etc/clearwater"):
+        os.makedirs("/etc/clearwater")
 with open("/etc/clearwater/config", 'w') as f:
 	f.write(result)
+os.chmod("/etc/clearwater/config", 0755)

@@ -3,5 +3,7 @@
 # contents have been unpacked
 # Best practice suggests you execute the hooks/install and
 # hooks/config-changed to ensure all updates are processed
+set -e
+
 $CHARM_DIR/hooks/install
 $CHARM_DIR/hooks/config-changed

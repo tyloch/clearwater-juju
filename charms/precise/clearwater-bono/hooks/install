@@ -1,17 +1,10 @@
 #!/bin/bash
+set -e
 
-# Install chef solo
+# Install chef solo, and create the node.json and config file
 $CHARM_DIR/lib/chef_solo_install
-# Create the solo.rb file
-$CHARM_DIR/lib/create_solo_file
-
-$CHARM_DIR/lib/basic_node_script
-
-# Update the config file
-mkdir /etc/clearwater/
-touch /etc/clearwater/config
+$CHARM_DIR/lib/node_json_script
 $CHARM_DIR/lib/config_script
-chmod 755 /etc/clearwater/config
 
 apt-get update
 
@@ -28,5 +21,3 @@ open-port 5060/tcp
 open-port 5060/udp
 open-port 5062/tcp
 open-port 6666/tcp
-# open-port doesn't currently support ranges
-#open-port 32768-65535/udp

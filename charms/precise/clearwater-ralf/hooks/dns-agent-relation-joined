@@ -1,16 +1,4 @@
 #!/bin/bash
-# Update the source list with the correct repo server
-touch /etc/apt/sources.list.d/clearwater.list
-chmod 777 /etc/apt/sources.list.d/clearwater.list
-$CHARM_DIR/lib/source_script
-chmod 644 /etc/apt/sources.list.d/clearwater.list
+set -e
 
-# Update the config file
-mkdir /etc/clearwater/
-touch /etc/clearwater/config
-$CHARM_DIR/lib/config_script
-chmod 755 /etc/clearwater/config
-
-# Restart clearwater-infrastructure
-service clearwater-infrastructure restart
-service ralf stop
+$CHARM_DIR/lib/dns_hook

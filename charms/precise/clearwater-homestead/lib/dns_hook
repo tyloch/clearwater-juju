@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Update the config file
+$CHARM_DIR/lib/config_script
+
+# Restart clearwater-infrastructure
+service clearwater-infrastructure restart
+service homestead stop
+service homestead-prov stop
