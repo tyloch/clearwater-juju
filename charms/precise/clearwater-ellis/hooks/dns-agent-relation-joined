@@ -1,19 +1,4 @@
 #!/bin/bash
-public_ip=`curl http://169.254.169.254/latest/meta-data/public-ipv4`
-relation-set public-address=$public_ip
+set -e
 
-# Update the config file
-mkdir /etc/clearwater/
-touch /etc/clearwater/config
-$CHARM_DIR/lib/config_script
-chmod 755 /etc/clearwater/config
-
-# Restart clearwater-infrastructure
-service clearwater-infrastructure restart
-service ellis stop
-
-home_domain=`relation-get home_domain`
-if [[ -n $home_domain ]]
-then
-  /usr/share/clearwater/ellis/env/bin/python /usr/share/clearwater/ellis/src/metaswitch/ellis/tools/create_numbers.py --start 6505550000 --count 1000
-fi
+$CHARM_DIR/lib/dns_hook

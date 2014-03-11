@@ -5,6 +5,9 @@
 # that it is live... you could remove it and sleep for a bit to allow the load
 # balancer to stop sending traffic.
 # rm /srv/webroot/server-live.txt && sleep 30
+set -e
+
+# Stop homestead via monit
 service monit start
 monit stop homestead
 monit stop homestead-prov
