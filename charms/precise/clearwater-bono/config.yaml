@@ -3,6 +3,10 @@ options:
     default: ""
     description: TURN workaround password, used by faulty WebRTC clients
     type: string
+  trusted_peers:
+    default: ""
+    description: Comma-separated list of IP addresses of trusted peers
+    type: string
   repo:
     default: http://repo.cw-ngv.com/stable
     description: The location of the repo server
