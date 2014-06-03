@@ -1,0 +1,30 @@
+#!/bin/bash
+set -e
+
+AS_JSON=/usr/share/clearwater/ellis/web­content/js/app­servers.json
+TMP_AS_JSON=/tmp/application-servers.json.$$
+
+id=$(cut -d/ -f2 <<< $JUJU_REMOTE_UNIT)
+as_name=$(relation-get as-name)
+as_uri=$(relation-get as-uri)
+
+if [ "$as_name" != "" ] ; then
+  cat > $AS_JSON.$id <<EOF
+  "as_name": "<InitialFilterCriteria><Priority>1</Priority><TriggerPoint><ConditionTypeCNF /><SPT><Group>0</Group><Method>REGISTER</Method></SPT><SPT><Group>0</Group><Method>INVITE</Method></SPT><SPT><Group>0</Group><Method>MESSAGE</Method></SPT></TriggerPoint><ApplicationServer><ServerName>$as_uri</ServerName><DefaultHandling>0</DefaultHandling></ApplicationServer></InitialFilterCriteria>",
+EOF
+else
+  rm -f $AS_JSON.$id
+fi
+
+{
+  echo {
+  cat $AS_JSON.* |
+  sort -k 1,1 -u
+  echo }
+} > $TMP_AS_JSON
+mv $TMP_AS_JSON $AS_JSON
+
+scscf=5054
+. /etc/clearwater/config
+[ -n "$scscf_uri" ] || scscf_uri=sip:$sprout_hostname:$scscf
+relation-set cscf-uri scscf_uri

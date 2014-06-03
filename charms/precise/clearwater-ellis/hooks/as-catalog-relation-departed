@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+AS_JSON=/usr/share/clearwater/ellis/web­content/js/app­servers.json
+TMP_AS_JSON=/tmp/application-servers.json.$$
+
+id=$(cut -d/ -f2 <<< $JUJU_REMOTE_UNIT)
+
+rm -f $AS_JSON.$id
+
+{
+  echo {
+  cat $AS_JSON.* |
+  sort -k 1,1 -u
+  echo }
+} > $TMP_AS_JSON
+mv $TMP_AS_JSON $AS_JSON
