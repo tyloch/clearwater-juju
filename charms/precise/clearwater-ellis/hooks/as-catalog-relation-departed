@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-AS_JSON=/usr/share/clearwater/ellis/web­content/js/app­servers.json
-TMP_AS_JSON=/tmp/application-servers.json.$$
+AS_JSON=/usr/share/clearwater/ellis/web-content/js/app-servers.json
+TMP_AS_JSON=/tmp/app-servers.json.$$
 
 id=$(cut -d/ -f2 <<< $JUJU_REMOTE_UNIT)
 
@@ -15,7 +15,7 @@ rm -f $AS_JSON.$id
   # Concatenate all the AS files,
   # remove any duplicates (on the first field) and then
   # remove a comma from the end of the last line.
-  cat $AS_JSON.* |
+  cat $AS_JSON.* 2>/dev/null |
   sort -k 1,1 -u |
   sed -e '$ s/,$//'
   # Close the JSON body
