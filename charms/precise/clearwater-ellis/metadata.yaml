@@ -8,3 +8,6 @@ subordinate: false
 requires:
   dns-agent:
     interface: dns-register
+provides:
+  as-catalog:
+    interface: as-register
