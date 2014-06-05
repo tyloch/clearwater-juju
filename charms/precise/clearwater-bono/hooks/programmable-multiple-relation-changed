@@ -13,7 +13,7 @@ _sip._udp IN SRV 0 0 5060 bono-'$id'
 bono-'$id' IN A '$ip
 
 # Update our DNS server
-echo nameserver $(relation-get public-address) > /etc/resolvconf/resolv.conf.d/head
+[ "$(relation-get public-address)" = "" ] || echo nameserver $(relation-get public-address) > /etc/resolvconf/resolv.conf.d/head
 service resolvconf restart
 
 # Update Clearwater configuration and restart

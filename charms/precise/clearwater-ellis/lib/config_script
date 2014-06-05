@@ -23,7 +23,7 @@ home_domain=$(config-get zone)
 [ "$relation-name" != "homestead-hss" ] || [ "$(relation-get public-address)" = "" ] || sprout_hostname=$(relation-get public-address)
 [ "$relation-name" != "xdms" ] || [ "$(relation-get public-address)" = "" ] || xdms_hostname=$(relation-get public-address):9888
 sas_server=$(config-get sas)
-local_ip=$(unit-get private-address)
+local_ip=$(dig +short $(unit-get private-address) | head -1)
 public_ip=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
 public_hostname=$(unit-get public-address)
 smtp_smarthost=$(config-get smtp_server)
