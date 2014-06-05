@@ -2,11 +2,13 @@
 set -e
 
 # Set our DNS requirements
+id=$(cut -d/ -f2 <<< $JUJU_UNIT_NAME)
+ip=$(unit-get private-address)
 relation-set domain=$(config-get zone)
-relation-set resources='sprout IN A '$(unit-get public-address)'
+relation-set resources='sprout IN A '$ip'
 sprout IN NAPTR 1 1 "S" "SIP+D2T" "" _sip._tcp.sprout
-_sip._tcp.sprout IN SRV 0 0 5054 sprout-$id
-sprout-$id IN A '$(unit-get public-address)
+_sip._tcp.sprout IN SRV 0 0 5054 sprout-'$id'
+sprout-'$id' IN A '$ip
 
 # Update our DNS server
 echo nameserver $(relation-get public-address) > /etc/resolvconf/resolv.conf.d/head

@@ -2,9 +2,11 @@
 set -e
 
 # Set our DNS requirements
+id=$(cut -d/ -f2 <<< $JUJU_UNIT_NAME)
+ip=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
 relation-set domain=$(config-get zone)
-relation-set resources='ellis IN A '$(unit-get public-address)'
-ellis-$id IN A '$(unit-get public-address)
+relation-set resources='ellis IN A '$ip'
+ellis-'$id' IN A '$ip
 
 # Update our DNS server
 echo nameserver $(relation-get public-address) > /etc/resolvconf/resolv.conf.d/head

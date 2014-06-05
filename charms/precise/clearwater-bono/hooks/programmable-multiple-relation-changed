@@ -2,13 +2,15 @@
 set -e
 
 # Set our DNS requirements
+id=$(cut -d/ -f2 <<< $JUJU_UNIT_NAME)
+ip=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
 relation-set domain=$(config-get zone)
-relation-set resources='@ IN A '$(unit-get public-address)'
+relation-set resources='@ IN A '$ip'
 @ IN NAPTR 1 1 "S" "SIP+D2T" "" _sip._tcp
 @ IN NAPTR 2 1 "S" "SIP+D2U" "" _sip._udp
-_sip._tcp IN SRV 0 0 5060 bono-$id
-_sip._udp IN SRV 0 0 5060 bono-$id
-bono-$id IN A '$(unit-get public-address)
+_sip._tcp IN SRV 0 0 5060 bono-'$id'
+_sip._udp IN SRV 0 0 5060 bono-'$id'
+bono-'$id' IN A '$ip
 
 # Update our DNS server
 echo nameserver $(relation-get public-address) > /etc/resolvconf/resolv.conf.d/head
