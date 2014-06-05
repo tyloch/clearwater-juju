@@ -10,5 +10,5 @@ requires:
     interface: DNS-MULTI
   scscf:
     interface: scscf-interface
-  ralf:
-    interface: ralf-interface
+  ralf-ctf:
+    interface: ralf-ctf-interface

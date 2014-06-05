@@ -2,7 +2,7 @@
 set -e
 
 # Update Clearwater configuration
-$CHARM_DIR/lib/config_script ralf
+$CHARM_DIR/lib/config_script ralf-ctf
 
 # Restart clearwater-infrastructure, and stop bono (to be restarted by monit)
 service clearwater-infrastructure restart
