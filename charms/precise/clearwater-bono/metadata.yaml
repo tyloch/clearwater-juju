@@ -7,7 +7,7 @@ categories:
 subordinate: false
 requires:
   programmable-multiple:
-    interface: DNS-MULTI
+    interface: dns-multi
   scscf:
     interface: 3GPP-Mr
   ralf-ctf:

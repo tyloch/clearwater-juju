@@ -7,7 +7,7 @@ categories:
 subordinate: false
 requires:
   programmable-multiple:
-    interface: DNS-MULTI
+    interface: dns-multi
 provides:
   xdms:
     interface: 3GPP-Ut

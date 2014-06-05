@@ -7,7 +7,7 @@ categories:
 subordinate: false
 requires:
   programmable-multiple:
-    interface: DNS-MULTI
+    interface: dns-multi
   homestead-hss:
     interface: homestead-hss-interface
   xdms:

@@ -7,7 +7,7 @@ categories:
 subordinate: false
 requires:
   programmable-multiple:
-    interface: DNS-MULTI
+    interface: dns-multi
 provides:
   ralf-ctf:
     interface: ralf-ctf-interface
