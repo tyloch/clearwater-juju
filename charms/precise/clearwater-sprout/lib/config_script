@@ -26,7 +26,7 @@ enum_server=$(config-get enum)
 local_ip=$(dig +short $(unit-get private-address) | head -1)
 public_ip=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
 public_hostname=$(unit-get public-address)
-reg_max_expires=$(config-get reg_min_expires)
+reg_max_expires=$(config-get reg_max_expires)
 default_session_expires=$(config-get session_max_expires)
 
 # Write configuration back

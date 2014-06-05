@@ -4,7 +4,7 @@ set -e
 # Set our DNS requirements
 TTL=300
 id=$(cut -d/ -f2 <<< $JUJU_UNIT_NAME)
-ip=$(unit-get private-address)
+ip=$(dig +short $(unit-get private-address) | head -1)
 relation-set domain=$(config-get zone)
 relation-set resources='homestead '$TTL' IN A '$ip'
 homestead-'$id' '$TTL' IN A '$ip
