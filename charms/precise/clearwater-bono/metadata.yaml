@@ -9,4 +9,6 @@ requires:
   programmable-multiple:
     interface: DNS-MULTI
   scscf:
-    interface: SIP
+    interface: scscf-interface
+  ralf:
+    interface: ralf-interface

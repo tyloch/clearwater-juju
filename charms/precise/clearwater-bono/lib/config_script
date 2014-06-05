@@ -9,7 +9,7 @@ sprout_hostname=sprout.$(config-get zone)
 hs_hostname=homestead.$(config-get zone):8888
 hs_provisioning_hostname=homestead.$(config-get zone):8889
 xdms_hostname=homer.$(config-get zone):7888
-ralf_hostname=ralf.$(config-get zone):9888
+ralf_hostname=
 sas_server=0.0.0.0
 enum_server=0.0.0.0
 
@@ -18,7 +18,8 @@ enum_server=0.0.0.0
 
 # Apply new configuration
 home_domain=$(config-get zone)
-[ "$relation-name" != "scscf" ] || sprout_hostname=$(relation-get public-address)
+[ "$relation-name" != "scscf" ] || [ "$(relation-get public-address)" = "" ] || sprout_hostname=$(relation-get public-address)
+[ "$relation-name" != "ralf" ] || [ "$(relation-get public-address)" = "" ] || ralf_hostname=$(relation-get public-address):9888
 sas_server=$(config-get sas_domain)
 local_ip=$(dig +short $(unit-get private-address) | head -1)
 public_ip=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
