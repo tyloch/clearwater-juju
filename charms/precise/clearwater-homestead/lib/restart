@@ -1,9 +1,7 @@
 #!/bin/bash
+set -e
 
-# Update the config file
-$CHARM_DIR/lib/config_script
-
-# Restart clearwater-infrastructure
+# Restart clearwater-infrastructure, and stop homestead/homestead-prov (to be restarted by monit)
 service clearwater-infrastructure restart
 service homestead stop
 service homestead-prov stop

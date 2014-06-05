@@ -6,8 +6,11 @@ categories:
   - misc
 subordinate: false
 requires:
-  dns-agent:
-    interface: dns-register
+  programmable-multiple:
+    interface: DNS-MULTI
+provides:
+  homestead-hss:
+    interface: homestead-hss-interface
 peers:
   homestead:
     interface: homestead-interface

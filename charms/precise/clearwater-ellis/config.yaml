@@ -1,4 +1,7 @@
 options:
+  zone:
+    description: The DNS root zone for this service
+    type: string
   smtp_server:
     default: ""
     description: The SMTP server to send password recovery emails from

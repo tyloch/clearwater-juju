@@ -6,8 +6,17 @@ categories:
   - misc
 subordinate: false
 requires:
-  dns-agent:
-    interface: dns-register
+  programmable-multiple:
+    interface: DNS-MULTI
+  homestead-hss:
+    interface: homestead-hss-interface
+  xdms:
+    interface: 3GPP-Ut
+  ralf-ctf:
+    interface: ralf-ctf-interface
+provides:
+  scscf:
+    interface: 3GPP-Mr
 peers:
   sprout:
     interface: sprout-interface

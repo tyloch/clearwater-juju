@@ -2,5 +2,5 @@
 set -e
 
 # Update Clearwater configuration and restart
-$CHARM_DIR/lib/config_script ralf-ctf
+$CHARM_DIR/lib/config_script homestead-hss
 $CHARM_DIR/lib/restart

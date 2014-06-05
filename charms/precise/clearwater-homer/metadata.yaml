@@ -6,8 +6,11 @@ categories:
   - misc
 subordinate: false
 requires:
-  dns-agent:
-    interface: dns-register
+  programmable-multiple:
+    interface: DNS-MULTI
+provides:
+  xdms:
+    interface: 3GPP-Ut
 peers:
   homer:
     interface: homer-interface

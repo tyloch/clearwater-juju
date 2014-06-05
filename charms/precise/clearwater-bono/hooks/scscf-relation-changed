@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-# Update Clearwater configuration
+# Update Clearwater configuration and restart
 $CHARM_DIR/lib/config_script scscf
-
-# Restart clearwater-infrastructure, and stop bono (to be restarted by monit)
-service clearwater-infrastructure restart
-service bono stop
+$CHARM_DIR/lib/restart

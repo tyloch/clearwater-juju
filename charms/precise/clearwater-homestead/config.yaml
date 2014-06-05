@@ -1,4 +1,11 @@
 options:
+  zone:
+    description: The DNS root zone for this service
+    type: string
+  sas:
+    default: ""
+    description: The location of the SAS server
+    type: string
   repo:
     default: http://repo.cw-ngv.com/stable
     description: The location of the repo server
