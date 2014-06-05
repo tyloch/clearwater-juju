@@ -8,7 +8,7 @@ set -e
 sprout_hostname=sprout.$(config-get zone)
 hs_hostname=homestead.$(config-get zone):8888
 hs_provisioning_hostname=homestead.$(config-get zone):8889
-xdms_hostname=homer.$(config-get zone):7888
+xdms_hostname=
 ralf_hostname=
 sas_server=0.0.0.0
 enum_server=0.0.0.0
