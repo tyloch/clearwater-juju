@@ -1,4 +1,11 @@
 options:
+  zone:
+    description: The DNS root zone for this service
+    type: string
+  sas:
+    default: ""
+    description: The location of the SAS server
+    type: string
   turn_workaround: 
     default: ""
     description: TURN workaround password, used by faulty WebRTC clients

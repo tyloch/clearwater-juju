@@ -6,5 +6,7 @@ categories:
   - misc
 subordinate: false
 requires:
-  dns-agent:
-    interface: dns-register
+  programmable-multiple:
+    interface: DNS-MULTI
+  scscf:
+    interface: SIP
