@@ -9,6 +9,6 @@ requires:
   programmable-multiple:
     interface: DNS-MULTI
   scscf:
-    interface: scscf-interface
+    interface: 3GPP-Mr
   ralf-ctf:
     interface: ralf-ctf-interface
