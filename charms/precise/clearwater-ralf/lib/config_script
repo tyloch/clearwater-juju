@@ -21,7 +21,7 @@ home_domain=$(config-get zone)
 sas_server=$(config-get sas)
 local_ip=$(dig +short $(unit-get private-address) | head -1)
 public_ip=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
-public_hostname=$(unit-get public-address)
+public_hostname=ralf-$(cut -d/ -f2 <<< $JUJU_UNIT_NAME).$(config-get zone)
 
 # Write configuration back
 mkdir -p /etc/clearwater
