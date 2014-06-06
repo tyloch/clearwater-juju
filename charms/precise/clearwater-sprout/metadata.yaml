@@ -12,8 +12,10 @@ requires:
     interface: homestead-hss-interface
   xdms:
     interface: 3GPP-Ut
+    optional: true
   ralf-ctf:
     interface: ralf-ctf-interface
+    optional: true
 provides:
   scscf:
     interface: 3GPP-Mr

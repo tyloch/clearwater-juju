@@ -12,3 +12,4 @@ requires:
     interface: 3GPP-Mr
   ralf-ctf:
     interface: ralf-ctf-interface
+    optional: true
