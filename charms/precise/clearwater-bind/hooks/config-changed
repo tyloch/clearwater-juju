@@ -3,7 +3,7 @@
 set -e
 
 zone=$(config-get zone)
-public_ip=$(dig +short $(unit-get public-address) | head -1)
+public_ip=$($CHARM_DIR/lib/unit-get public-address)
 
 cat >/etc/bind/named.conf.local <<EOF
 zone "$zone" {

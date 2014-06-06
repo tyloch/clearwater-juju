@@ -19,8 +19,8 @@ enum_server=
 # Apply new configuration
 home_domain=$(config-get zone)
 sas_server=$(config-get sas)
-local_ip=$(dig +short $(unit-get private-address) | head -1)
-public_ip=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
+local_ip=$($CHARM_DIR/lib/unit-get private-address)
+public_ip=$($CHARM_DIR/lib/unit-get public-address)
 public_hostname=homestead-$(cut -d/ -f2 <<< $JUJU_UNIT_NAME).$(config-get zone)
 
 # Write configuration back
