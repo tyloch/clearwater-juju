@@ -1,6 +1,17 @@
 #!/bin/bash
 set -e
 
+# This is a big hack.  Juju on EC2 returns hostnames rather than IP addresses
+# for public-address and private-address.  To work-around this, we resolve the
+# host names.  However, after we've joined to the DNSaaS charm, we can no longer
+# resolve these, so add them to /etc/hosts.
+if ! grep "# added by clearwater-*/hooks/install" /etc/hosts ; then
+  cat >>/etc/hosts <<EOF
+$(dig +short $(unit-get private-address) | head -1) $(unit-get private-address) homestead-$(cut -d/ -f2 <<< $JUJU_UNIT_NAME).$(config-get zone) # added by clearwater-*/hooks/install
+$(dig +short $(unit-get public-address) | head -1) $(unit-get public-address) # added by clearwater-*/hooks/install
+EOF
+fi
+
 # Install chef solo
 $CHARM_DIR/lib/chef_solo_install
 
