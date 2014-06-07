@@ -9,7 +9,7 @@ requires:
   programmable-multiple:
     interface: dns-multi
 provides:
-  ralf-ctf:
+  ralf-cscf:
     interface: ralf-ctf-interface
 peers:
   ralf-relation:

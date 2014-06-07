@@ -16,8 +16,11 @@ requires:
   ralf-ctf:
     interface: ralf-ctf-interface
     optional: true
+  as:
+    interface: 3GPP-ISC
+    optional: true
 provides:
-  scscf:
+  pcscf:
     interface: 3GPP-Mr
 peers:
   sprout:

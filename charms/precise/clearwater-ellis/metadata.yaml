@@ -8,8 +8,8 @@ subordinate: false
 requires:
   programmable-multiple:
     interface: dns-multi
-  homestead-hss:
-    interface: homestead-hss-interface
+  homestead-prov:
+    interface: homestead-prov-interface
   xdms:
     interface: 3GPP-Ut
 provides:
