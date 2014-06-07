@@ -23,7 +23,7 @@ clearwater:
       options: 
         zone: "clearwater.local"
       annotations: 
-        "gui-x": "0"
+        "gui-x": "800"
         "gui-y": "750"
     "clearwater-homestead": 
       charm: "cs:~matt-williams-x/precise/clearwater-homestead"
