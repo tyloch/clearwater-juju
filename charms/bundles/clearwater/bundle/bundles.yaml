@@ -3,6 +3,7 @@ clearwater:
     "clearwater-bono": 
       charm: "cs:~matt-williams-x/precise/clearwater-bono"
       num_units: 1
+      constraints: "arch=amd64"
       options: 
         zone: "clearwater.local"
       expose: true
@@ -12,6 +13,7 @@ clearwater:
     "clearwater-sprout": 
       charm: "cs:~matt-williams-x/precise/clearwater-sprout"
       num_units: 1
+      constraints: "arch=amd64"
       options: 
         zone: "clearwater.local"
       annotations: 
@@ -20,6 +22,7 @@ clearwater:
     "clearwater-ralf": 
       charm: "cs:~matt-williams-x/precise/clearwater-ralf"
       num_units: 1
+      constraints: "arch=amd64"
       options: 
         zone: "clearwater.local"
       annotations: 
@@ -28,6 +31,7 @@ clearwater:
     "clearwater-homestead": 
       charm: "cs:~matt-williams-x/precise/clearwater-homestead"
       num_units: 1
+      constraints: "arch=amd64"
       options: 
         zone: "clearwater.local"
       annotations: 
@@ -36,6 +40,7 @@ clearwater:
     "clearwater-homer": 
       charm: "cs:~matt-williams-x/precise/clearwater-homer"
       num_units: 1
+      constraints: "arch=amd64"
       options: 
         zone: "clearwater.local"
       annotations: 
@@ -44,6 +49,7 @@ clearwater:
     "clearwater-ellis": 
       charm: "cs:~matt-williams-x/precise/clearwater-ellis"
       num_units: 1
+      constraints: "arch=amd64"
       options: 
         base_number: "1234567000"
         number_count: 1000
