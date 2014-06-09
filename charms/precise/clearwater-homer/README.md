@@ -7,11 +7,11 @@ This charm supports deployment and scaling of the Homer component of a Project C
 The Homer service should be deployed as part of a Clearwater system.  A Clearwater system can be deployed in a Juju environment by creating a config.yaml file then running the following commands.
 
     juju deploy --config config.yaml clearwater-route53
-    juju deploy --config config.yaml clearwater-ellis
-    juju deploy --config config.yaml clearwater-bono
-    juju deploy --config config.yaml clearwater-sprout
-    juju deploy --config config.yaml clearwater-homestead
-    juju deploy --config config.yaml clearwater-homer
+    juju deploy --config config.yaml --constraints arch=amd64 clearwater-ellis
+    juju deploy --config config.yaml --constraints arch=amd64 clearwater-bono
+    juju deploy --config config.yaml --constraints arch=amd64 clearwater-sprout
+    juju deploy --config config.yaml --constraints arch=amd64 clearwater-homestead
+    juju deploy --config config.yaml --constraints arch=amd64 clearwater-homer
     juju add-relation clearwater-ellis clearwater-route53:register-ellis
     juju add-relation clearwater-bono clearwater-route53:register-bono
     juju add-relation clearwater-sprout clearwater-route53:register-sprout
@@ -52,6 +52,8 @@ The config.yaml configuration file takes the following format.
 
     clearwater-homer:
       repo: http://repo.cw-ngv.com/stable
+
+Note that the clearwater-homer charm can only be deployed on the `amd64` architecture.
 
 ## Scale out Usage
 
