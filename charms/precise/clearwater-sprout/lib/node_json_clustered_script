@@ -40,7 +40,7 @@ else:
 	d['CLUSTERED'] = ""
 
 if args.joining:
-	d['JOINING'] = ",\n      \"joining\": true"
+	d['JOINING'] = "\"joining\": true,\n      "
 else:
 	d['JOINING'] = ""
 
