@@ -8,5 +8,5 @@
 set -e
 
 # Stop sprout via monit
-service clearwater-monit start
+service clearwater-monit start || /bin/true
 monit stop sprout

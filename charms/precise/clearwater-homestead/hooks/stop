@@ -8,6 +8,6 @@
 set -e
 
 # Stop homestead via monit
-service clearwater-monit start
+service clearwater-monit start  || /bin/true
 monit stop homestead
 monit stop homestead-prov

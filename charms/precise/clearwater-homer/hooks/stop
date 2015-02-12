@@ -8,5 +8,5 @@
 set -e
 
 # Stop homer via monit
-service clearwater-monit start
+service clearwater-monit start || /bin/true
 monit stop homer

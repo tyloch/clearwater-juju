@@ -12,7 +12,7 @@ import argparse
 # and the repo server.
 #
 # If the node is being clustered, the role 'clustered' is added, and if the
-# node is joinging the attribute 'joining' is added
+# node is joining the attribute 'joining' is added
 #
 # The node.json file is templated in lib/node_json_clustered_template.
 

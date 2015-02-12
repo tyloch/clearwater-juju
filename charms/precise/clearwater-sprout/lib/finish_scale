@@ -2,7 +2,7 @@
 set -e
 
 # Clear the joining attribute on all nodes in the cluster
-for f in ~/chef-solo/data_bags/node/*.json; do
+for f in /home/ubuntu/chef-solo/data_bags/node/*.json; do
   sed -i 's/"joining": true/"joining": false/' $f
 done
 
