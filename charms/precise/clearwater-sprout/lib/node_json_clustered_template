@@ -10,7 +10,7 @@
       "local_ipv4": "$LOCAL_IP"
     },
     "clearwater": {
-      "index": $MACHINE_ID$JOINING
+      $JOINING"index": $MACHINE_ID
     }
   },
   "chef_type": "node",
