@@ -9,7 +9,7 @@ sprout_hostname=sprout.$(config-get zone)
 hs_hostname=homestead.$(config-get zone):8888
 hs_provisioning_hostname=homestead.$(config-get zone):8889
 xdms_hostname=homer.$(config-get zone):7888
-ralf_hostname=
+ralf_hostname=ralf.$(config-get zone):10888
 sas_server=0.0.0.0
 enum_server=
 
