@@ -4,9 +4,9 @@ This charm supports deployment and scaling of a Project Clearwater system.  See 
 
 # Usage
 
-A Clearwater system can be deployed in a Juju environment by creating a config.yaml file then running the following commands.
+A Clearwater system can be deployed in a Juju environment by creating a bundle-config.yaml file then running the following commands:
 
-    git clone https://github.com/Metaswitch/clearwater-juju.git
+    git clone -b dnsaas https://github.com/Metaswitch/clearwater-juju.git
     JUJU_REPOSITORY=clearwater-juju/charms juju-deployer -c clearwater-juju/charms/bundles/clearwater/bundle.yaml -c bundle-config.yaml
 
 An example of the bundle-config.yaml configuration file is at [bundle-config.yaml.example](bundle-config.yaml.example).
