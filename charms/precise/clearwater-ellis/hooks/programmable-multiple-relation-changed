@@ -10,10 +10,9 @@ relation-set resources='ellis '$TTL' IN A '$ip'
 ellis-'$id' '$TTL' IN A '$ip
 
 # Update our DNS server
-if [ "$(relation-get public-address)" != "" ]
+if [ "$(relation-get private-address)" != "" ]
 then
-  echo nameserver $(relation-get public-address) > /etc/dnsmasq.resolv.conf
-  echo "nameserver 8.8.8.8" >> /etc/dnsmasq.resolv.conf
+  echo nameserver $(relation-get private-address) > /etc/dnsmasq.resolv.conf
   grep -v ^RESOLV_CONF= /etc/default/dnsmasq > /tmp/dnsmasq.$$
   mv /tmp/dnsmasq.$$ /etc/default/dnsmasq
   echo RESOLV_CONF=/etc/dnsmasq.resolv.conf >> /etc/default/dnsmasq
