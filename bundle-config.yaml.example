@@ -1,0 +1,27 @@
+clearwater:
+  services:
+    "clearwater-bono":
+      options:
+        zone: "ims.clearwater.local"
+        trusted_peers: "1.2.3.4,5.6.7.9"
+    "clearwater-sprout":
+      options:
+        zone: "ims.clearwater.local"
+    "clearwater-ralf":
+      options:
+        zone: "ims.clearwater.local"
+    "clearwater-homestead":
+      options:
+        zone: "ims.clearwater.local"
+    "clearwater-homer":
+      options:
+        zone: "ims.clearwater.local"
+    "clearwater-ellis":
+      options:
+        base_number: "1234567000"
+        number_count: 1000
+        signup_key: "abracadabra"
+        zone: "ims.clearwater.local"
+    dns:
+      options:
+        domain: "ims.clearwater.local"
