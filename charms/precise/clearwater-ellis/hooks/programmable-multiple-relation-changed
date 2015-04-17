@@ -4,7 +4,7 @@ set -e
 # Set our DNS requirements
 TTL=300
 id=$(cut -d/ -f2 <<< $JUJU_UNIT_NAME)
-ip=$($CHARM_DIR/lib/unit-get public-address)
+ip=$(unit-get public-address)
 relation-set domain=$(config-get zone)
 relation-set resources='ellis '$TTL' IN A '$ip'
 ellis-'$id' '$TTL' IN A '$ip
