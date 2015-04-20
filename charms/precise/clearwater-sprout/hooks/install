@@ -1,17 +1,8 @@
 #!/bin/bash
 set -e
 
-# This is a big hack.  Juju on EC2 returns hostnames rather than IP addresses
-# for public-address and private-address.  To work-around this, we resolve the
-# host names.  However, after we've joined to the DNSaaS charm, we can no longer
-# resolve these, so add them to /etc/hosts.
 if ! grep "# added by clearwater-*/hooks/install" /etc/hosts ; then
-  private_address=$(unit-get private-address)
-  public_address=$(unit-get public-address)
-  private_ip=$($CHARM_DIR/lib/unit-get private-address)
-  public_ip=$($CHARM_DIR/lib/unit-get public-address)
-  [ "$private_address" = "$private_ip" ] || echo "$private_ip $private_address # added by clearwater-*/hooks/install" >>/etc/hosts
-  [ "$public_address" = "$public_ip" ] || echo "$public_ip $public_address $(sed -e 's/\..*$//' <<< $public_address) # added by clearwater-*/hooks/install" >>/etc/hosts
+  private_ip=$(unit-get private-address)
   echo "$private_ip sprout-$(cut -d/ -f2 <<< $JUJU_UNIT_NAME).$(config-get zone) # added by clearwater-*/hooks/install" >>/etc/hosts
 fi
 

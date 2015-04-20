@@ -1,5 +1,6 @@
 options:
   zone:
+    default: "clearwater.local"
     description: The DNS root zone for this service
     type: string
   sas:
