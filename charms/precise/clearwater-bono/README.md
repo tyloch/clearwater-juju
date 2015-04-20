@@ -1,6 +1,6 @@
 # Overview
 
-This is a [Juju charm](https://jujucharms.com/about), which allows deployment and scaling of the Bono component of a [Project Clearwater](http://projectclearwater.org) IMS core.
+This is a [Juju charm](https://jujucharms.com/about), which allows deployment and scaling of the [Bono](https://github.com/Metaswitch/sprout/#sprout-and-bono) component of a [Project Clearwater](http://projectclearwater.org) IMS core.
 
 Bono should only be deployed alongside the other Project Clearwater charms and a DNS server - see [our main Juju README](https://github.com/Metaswitch/clearwater-juju/blob/local_charms/README.md) for instructions on this, including a bundle that makes this deployment simple.
 
@@ -16,7 +16,7 @@ Note that the clearwater-bono charm can only be deployed on the `amd64` architec
 
 clearwater-bono can be scaled up through the normal Juju mechanism of `juju add-unit clearwater-bono`.
 
-This will create a new Bono instance, and trigger the DNS server charm to add a DNS record for this Bono. (Unlike Sprout, Homestead and Homer nodes, Bono nodes don't have a shared datastore, so don't need any cluster configuration.)
+This will create a new Bono instance, and trigger the DNS server charm to add a DNS record for this Bono. (Unlike Sprout, Homestead, Homer and Ralf nodes, Bono nodes don't have a shared datastore, so don't need any cluster configuration.)
 
 # Using Bono
 
@@ -45,6 +45,6 @@ When the charm is being installed, several files are downloaded:
 
 Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks](http://www.metaswitch.com) and released under the [GNU GPLv3](http://www.projectclearwater.org/download/license/). You can find more information about it on [our website](http://www.projectclearwater.org/) or [our documentation site](https://clearwater.readthedocs.org).
 
-Clearwater source code and issue list can be found at https://github.com/Metaswitch/.
+Clearwater source code and issue list can be found at https://github.com/Metaswitch/. Bono's source code can be found at https://github.com/Metaswitch/sprout/.
 
 If you have problems when using Project Clearwater, read [our troubleshooting documentation](http://clearwater.readthedocs.org/en/latest/Troubleshooting_and_Recovery/index.html) for help, or see [our support page](http://clearwater.readthedocs.org/en/latest/Support/index.html) to find out how to ask mailing list questions or raise issues.
