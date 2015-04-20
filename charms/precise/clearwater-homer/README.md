@@ -63,8 +63,6 @@ The only currently supported DNS service for Clearwater is clearwater-route53 (w
 
 clearwater-homer currently only supports running as a single unit.  Clustering support will be released shortly, which will allow units to be added to and removed from a clearwater-homer deployment using juju add-unit and juju remove-unit commands.
 
-Note that this charm does not current pass charm proof because its hooks use EC2 APIs directly to obtain the public IP address rather than unit-get public-address.  This is to work around what looks like a Juju bug - unit-get public-address on EC2 returns the public hostname of the unit rather than the public IP address.  Unfortunately EC2 public hostname are actually split horizon hostnames, so if you attempt to resolve the hostname from within EC2 it actually resolved to a private IP address - it will only resolve to a public address if resolved from outside EC2.
-
 # Configuration
 
 Clearwater has a number of configuration fields which are non-defaultable.  These are as follows.
