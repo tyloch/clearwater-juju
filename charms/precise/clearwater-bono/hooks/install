@@ -25,4 +25,3 @@ open-port 3478/udp
 open-port 5060/tcp
 open-port 5060/udp
 open-port 5062/tcp
-open-port 6666/tcp
