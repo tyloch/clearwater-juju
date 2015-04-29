@@ -15,6 +15,8 @@ enum_server=
 
 # Apply new configuration
 home_domain=$(config-get zone)
+[ "$relation-name" != "cscf" ] || [ "$(relation-get public-address)" = "" ] || sprout_hostname=$(relation-get public-address)
+[ "$relation-name" != "ralf-ctf" ] || [ "$(relation-get public-address)" = "" ] || ralf_hostname=$(relation-get public-address):9888
 sas_server=$(config-get sas)
 local_ip=$(unit-get private-address)
 public_ip=$(unit-get public-address)

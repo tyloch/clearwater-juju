@@ -89,7 +89,7 @@ clearwater:
         "gui-x": "-1000"
         "gui-y": "300"
   relations: 
-    - - "clearwater-bono:scscf"
+    - - "clearwater-bono:cscf"
       - "clearwater-sprout:pcscf"
     - - "clearwater-bono:ralf-ctf"
       - "clearwater-ralf:ralf-cscf"
