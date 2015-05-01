@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
-# Update Clearwater configuration and restart
+# Update Clearwater configuration and restart if anything changed
+cp /etc/clearwater/config /tmp/config.$$
 $CHARM_DIR/lib/config_script cscf
-$CHARM_DIR/lib/restart
+cmp /etc/clearwater/config /tmp/config.$$ || $CHARM_DIR/lib/restart
+rm -f /tmp/config.$$
