@@ -19,7 +19,7 @@ home_domain=$(config-get zone)
 local_ip=$(unit-get private-address)
 public_ip=$(unit-get public-address)
 public_hostname=sipp-$(cut -d/ -f2 <<< $JUJU_UNIT_NAME).$(config-get zone)
-node_idx=$(($(cut -d/ -f2 <<< $JUJU_UNIT_NAME) + 1)
+node_idx=$(($(cut -d/ -f2 <<< $JUJU_UNIT_NAME) + 1))
 
 # Write configuration back
 mkdir -p /etc/clearwater
