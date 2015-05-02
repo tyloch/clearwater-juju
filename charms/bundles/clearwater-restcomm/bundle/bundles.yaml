@@ -60,7 +60,7 @@ clearwater:
         "gui-x": "400"
         "gui-y": "0"
     dns: 
-      charm: "cs:~lazypower/precise/dns-1"
+      charm: "cs:~lazypower/precise/dns-3"
       num_units: 1
       options: 
         domain: "clearwater.local"
