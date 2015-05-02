@@ -21,7 +21,7 @@ requires:
     optional: true
 provides:
   pcscf:
-    interface: 3GPP-Mr
+    interface: 3GPP-Mw
 peers:
   sprout:
     interface: sprout-interface
