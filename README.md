@@ -13,7 +13,7 @@ Fortunately, we've set up a Juju bundle that ties all these charms and their rel
 A Clearwater system can be deployed in a Juju environment by creating a bundle-config.yaml file then running the following commands.
 
     git clone -b dnsaas https://github.com/Metaswitch/clearwater-juju.git
-    JUJU_REPOSITORY=clearwater-juju/charms juju-deployer -c clearwater-juju/charms/bundles/clearwater/bundles.yaml -c bundle-config.yaml
+    JUJU_REPOSITORY=clearwater-juju/charms juju-deployer -c clearwater-juju/charms/bundles/clearwater/bundle/bundles.yaml -c bundle-config.yaml
 
 # Configuration
 
