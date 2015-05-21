@@ -14,7 +14,7 @@ bash <(wget  ${install_sh} -O -) ${version_string}
 if [ ! -d /home/ubuntu/chef-solo ]
 then
   mkdir /home/ubuntu/chef-solo
-  git clone --recursive -b master git://github.com/Metaswitch/chef.git /home/ubuntu/chef-solo
+  git clone --recursive -b release-70 git://github.com/Metaswitch/chef.git /home/ubuntu/chef-solo
 fi
 
 # Update the chef recipes
