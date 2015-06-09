@@ -14,4 +14,4 @@ set -e
 service ralf restart || /usr/bin/true
 service clearwater-monit restart || /usr/bin/true
 sleep 1
-monit monitor ralf_process
+monit monitor ralf

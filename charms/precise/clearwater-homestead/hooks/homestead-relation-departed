@@ -14,7 +14,7 @@ if [ $this_index -gt $peer_index ]
     if [[ $decommissioned == 1* ]]
       then
         monit stop homestead
-        monit unmonitor cassandra_process
+        monit unmonitor cassandra
         nodetool decommission
     fi
   else
