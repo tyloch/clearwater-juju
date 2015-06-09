@@ -15,5 +15,5 @@ service homestead restart || /usr/bin/true
 service homestead-prov restart || /usr/bin/true
 service clearwater-monit restart || /usr/bin/true
 sleep 1
-monit monitor homestead
-monit monitor homestead-prov
+monit monitor homestead_process
+monit monitor homestead-prov_process

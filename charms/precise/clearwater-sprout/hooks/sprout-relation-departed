@@ -9,9 +9,9 @@ this_index=$(echo $JUJU_UNIT_NAME | cut -d'/' -f2)
 if [ $this_index -gt $peer_index ]
   then
     # Remove this node.
-    monit unmonitor sprout
-    monit unmonitor poll_sprout_sip
-    monit unmonitor poll_sprout_http
+    monit unmonitor sprout_process
+    monit unmonitor poll_sprout_sip_process
+    monit unmonitor poll_sprout_http_process
     service sprout start-quiesce
   else
     # Remove the node.json in databags that corresponds to the node being removed.

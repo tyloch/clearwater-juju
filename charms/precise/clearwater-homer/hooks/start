@@ -14,4 +14,4 @@ set -e
 service homer restart || /usr/bin/true
 service clearwater-monit restart || /usr/bin/true
 sleep 1
-monit monitor homer
+monit monitor homer_process
